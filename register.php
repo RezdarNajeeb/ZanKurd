@@ -59,7 +59,7 @@ if(isset($message)){
       <input type="email" name="email" placeholder="enter your email" required class="box">
       <input type="password" name="password" placeholder="enter your password" required class="box">
       <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
-      <input type="submit" name="submit" value="register now" class="btn">
+      <input type="submit" name="submit" value="register now" class="primary-button button">
       <p>already have an account? <a href="login.php">login now</a></p>
    </form>
 

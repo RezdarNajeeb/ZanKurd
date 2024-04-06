@@ -1,0 +1,202 @@
+/* color palette */
+:root {
+  --primary-color: #264653;
+  --secondary-color: #2a9d8f;
+  --background-color: #f0f3bd;
+  --text-color: #333333;
+  --border: 0.1rem solid rgba(38, 70, 83, 0.3);
+  --border-hover: .1rem solid var(--text-color);
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* custom font */
+@font-face {
+  font-family: 'rudaw-font';
+  src: local('assets/fonts/rudaw-font.ttf') format('ttf');
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+* {
+  font-family: 'rudaw-font';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+body{
+  background-color: var(--background-color);
+}
+
+/* Shared Button style */
+.button {
+  display: inline-block;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Primary Button styles */
+.primary-button {
+  background-color: var(--primary-color);
+  border: 0.1rem solid var(--primary-color);
+}
+
+.primary-button:hover {
+  color: var(--primary-color);
+  background-color: transparent;
+  border-color: var(--primary-color);
+}
+
+/* Download Button styles */
+.download-button {
+  background-color: #007bff;
+  border: 0.1rem solid #007bff;
+}
+
+.download-button:hover {
+  color: #007bff;
+  background-color: transparent;
+  border-color: #007bff;
+}
+
+/* Cancel Button styles */
+.cancel-button {
+  background-color: #6c757d;
+  border: 0.1rem solid #6c757d;
+}
+
+.cancel-button:hover {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: #6c757d;
+}
+
+/* Add Button styles */
+.add-button {
+  background-color: #4CAF50;
+  border: 0.1rem solid #4CAF50;
+}
+
+.add-button:hover {
+  color: #4CAF50;
+  background-color: transparent;
+  border-color: #4CAF50;
+}
+
+/* Delete Button styles */
+.delete-button {
+  background-color: #e63946;
+  border: 0.1rem solid #e63946;
+}
+
+.delete-button:hover {
+  color: #e63946;
+  background-color: transparent;
+  border-color: #e63946;
+}
+
+/* Update Button styles */
+.update-button {
+  background-color: #ffb400;
+  border: 0.1rem solid #ffb400;
+}
+
+.update-button:hover {
+  color: #ffb400;
+  background-color: transparent;
+  border-color: #ffb400;
+}
+
+/* All Books style */
+.all-books{
+  padding: 2rem;
+}
+
+.box-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+
+.box {
+  height: 20rem;
+  border-radius: .5rem;
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  border:var(--border);
+}
+
+.image {
+  width: 100%;
+  height: 80%;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+@media screen and (max-width: 480px) {
+  /* Adjust styles for screens up to 480px wide */
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  /* Adjust styles for screens between 481px and 768px wide */
+  html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Adjust styles for screens between 769px and 1024px wide */
+  html {
+    font-size: 16px;
+  }
+}
+
+
