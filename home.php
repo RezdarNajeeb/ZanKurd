@@ -3,25 +3,26 @@ include 'config.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!-- custom css style link-->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- font awesome cdn-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+<html lang="ckb" dir="rtl">
 
-  <body>
-    <?php
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <!-- custom css style link-->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- font awesome cdn-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <?php
     include 'header.php';
     ?>
 
-    <section class="all-books">
+  <section class="all-books">
 
-      <?php
+    <?php
       // Select all books
       $select_all_books = mysqli_query($conn, "SELECT * FROM `books`") or die('Failed to select books');
       
@@ -29,7 +30,7 @@ include 'config.php';
       $totalBooks = mysqli_num_rows($select_all_books);
 
       // Define the number of books per page
-      $booksPerPage = 10;
+      $booksPerPage = 12;
 
       // Calculate the total number of pages
       $totalPages = ceil($totalBooks / $booksPerPage);
@@ -45,26 +46,31 @@ include 'config.php';
       $select_current_books = mysqli_query($conn, "SELECT * FROM `books` LIMIT $offset, $booksPerPage") or die('Failed to select books');
       ?>
 
-      <!-- Display the books for the current page -->
-      <div class='box-container'>
-        <?php
+    <!-- Display the books for the current page -->
+    <div class='box-container'>
+      <?php
         if($totalBooks > 0){
           while($currentBooks = mysqli_fetch_assoc($select_current_books)){
         ?>
-          <div class='box'>
-            <img src='uploaded_image/1.png' alt='' class='image'>
-            <p class='text'><?php echo $currentBooks['book_name']?></p>
-            <p class='text'><?php echo $currentBooks['book_author']?></p>
-          </div>
-          <?php
+      <div class='box'>
+        <div class="image">
+          <img src='uploaded_image/patata_xorakan.jpg' alt=''>
+        </div>
+        <div class="text">
+          <p><?php echo $currentBooks['book_name']?></p>
+          <p><?php echo "نووسەر: " . $currentBooks['book_author']?></p>
+        </div>
+        <a href="" download="test" class="download-button">دابەزاندن</a>
+      </div>
+      <?php
           }
         }
           ?>
-      </div>
+    </div>
 
-      <!-- Display pagination links -->
-      <div class='pagination'>
-        <?php
+    <!-- Display pagination links -->
+    <div class='pagination'>
+      <?php
         // Previous link
         if ($page > 1) {
           echo "<a href='home.php?page=" . ($page - 1) . "'>Previous</a> ";
@@ -73,14 +79,14 @@ include 'config.php';
         if($totalPages > 1) {
           // show page 1
           if($page == 1) {
-            echo "<span>1 </span>";
+            echo "<span class='current'>1 </span>";
           } else{
             echo "<a href='home.php?page=1'>1</a> ";
           }
 
         // show page 2
         if($page == 2) {
-          echo "<span>2 </span>";
+          echo "<span class='current'>2 </span>";
         } else{
           echo "<a href='home.php?page=2'>2</a> ";
         }
@@ -98,7 +104,7 @@ include 'config.php';
         // Display pages between startPage and endPage
         for ($i = $startPage; $i <= $endPage; $i++) {
             if ($i == $page) {
-                echo "<span>$i</span> ";
+                echo "<span class='current'>$i</span> ";
             } else {
                 echo "<a href='home.php?page=$i'>$i</a> ";
             }
@@ -112,7 +118,7 @@ include 'config.php';
         // show second to last page
         if($totalPages > 3) {
           if($page == $totalPages - 1) {
-            echo "<span>".($totalPages - 1)." </span>";
+            echo "<span class='current'>".($totalPages - 1)." </span>";
           } else{
             echo "<a href='home.php?page=" . ($totalPages - 1) . "'>" . ($totalPages - 1) . "</a> ";
           }
@@ -121,7 +127,7 @@ include 'config.php';
         // show last page
         if($totalPages > 2) {
           if($page == $totalPages) {
-            echo "<span>$totalPages </span>";
+            echo "<span class='current'>$totalPages </span>";
           } else{
             echo "<a href='home.php?page=$totalPages'>$totalPages</a> ";
           }
@@ -132,12 +138,13 @@ include 'config.php';
             echo "<a href='home.php?page=" . ($page + 1) . "'>Next</a> ";
         }
         ?>
-      </div>
+    </div>
 
-    </section>
+  </section>
 
 
-    <!-- custom js file -->
-    <script src="js/scripts.js"></script>
-  </body>
+  <!-- custom js file -->
+  <script src="js/scripts.js"></script>
+</body>
+
 </html>
