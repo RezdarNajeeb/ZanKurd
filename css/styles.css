@@ -143,14 +143,13 @@ body{
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 11.6rem);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 14rem);
+  gap: 1.25rem;
   justify-content: center;
 }
 
 .box {
-  max-width: 227.16px;
-  height: 22rem;
+  height: 25rem;
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
   border: var(--border);
@@ -204,6 +203,7 @@ body{
   border: var(--border);
   border-radius: 0.25rem;
   text-decoration: none;
+  text-align: center;
 }
 
 .pagination a:hover {
@@ -216,6 +216,18 @@ body{
   color: var(--primary-color);
   border: .1rem solid var(--primary-color);
   cursor: pointer;
+}
+
+.home{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home h1{
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 
