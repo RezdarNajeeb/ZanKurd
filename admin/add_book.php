@@ -4,7 +4,7 @@ include 'admin_header.php';
 
 
 if (isset($_POST['add_book'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $name = mysqli_real_escape_string($conn, $_POST['book_name']);
 
     $author = mysqli_real_escape_string($conn, $_POST['author']);
 
@@ -57,7 +57,7 @@ if (isset($_POST['add_book'])) {
 
 <body>
     <section class="add-books">
-        <h1>Add Book</h1>
+        <h1>زیادکردنی کتێب</h1>
         <form action="add_book.php" method="POST" enctype="multipart/form-data">
             <label for="book_name">ناو</label>
             <input type="text" name="book_name" required>
