@@ -22,7 +22,7 @@
 
     <?php
       // Select all books
-      $select_all_books = mysqli_query($conn, "SELECT * FROM `books`") or die('Failed to select books');
+      $select_all_books = mysqli_query($conn, "SELECT * FROM books") or die('Failed to select books');
       
       // Define the total number of books
       $totalBooks = mysqli_num_rows($select_all_books);
@@ -41,7 +41,7 @@
       $offset = ($page - 1) * $booksPerPage;
 
       // Select books for the current page using LIMIT
-      $select_current_books = mysqli_query($conn, "SELECT * FROM `books` LIMIT $offset, $booksPerPage") or die('Failed to select books');
+      $select_current_books = mysqli_query($conn, "SELECT * FROM books LIMIT $offset, $booksPerPage") or die('Failed to select books');
       ?>
 
     <!-- Display the books for the current page -->
@@ -122,7 +122,8 @@
           }
         }
 
-        // show last page
+
+// show last page
         if($totalPages > 2) {
           if($page == $totalPages) {
             echo "<span class='current'>$totalPages </span>";
