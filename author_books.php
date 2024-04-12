@@ -1,20 +1,54 @@
 <?php
-  include 'config.php';
+include 'config.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="ckb">
+<html lang="ckb" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>هەموو کتێبەکان</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- font awesome cdn-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  
-  <?php
+
+    <?php
+    $selected_id = $_GET['id'];
+
+    $select_books = mysqli_query(
+        $conn,
+        "SELECT * FROM books
+    WHERE author_name = (
+        SELECT author_name FROM authors WHERE author_id = $selected_id"
+    ) or die("Failed to select book");
+
+    $book_details = mysqli_fetch_assoc($select_books);
+
+    // Define the total number of books
+    $totalBooks = mysqli_num_rows($select_books);
+
+    // Define the number of books per page
+    $booksPerPage = 10;
+
+    // Calculate the total number of pages
+    $totalPages = ceil($totalBooks / $booksPerPage);
+
+    // Get the current page number from the URL
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $page = max(1, $page); // Ensure page is within valid range
+
+    // Calculate the offset for the SQL query
+    $offset = ($page - 1) * $booksPerPage;
+
+    // Select books for the current page using LIMIT
+    $select_current_books = mysqli_query($conn, "SELECT * FROM books
+    WHERE author_name = (
+        SELECT author_name FROM authors WHERE author_id = $selected_id LIMIT $offset, $booksPerPage") or die('Failed to select books');
+    ?>
+
+<?php
   include 'header.php';
   ?>
 
@@ -54,17 +88,11 @@
         <div class="image">
           <?php echo '<a href="book_details.php?id=' . $currentBooks['book_id'] . '"><img src="uploaded_image/patata_xorakan.jpg" alt=""></a>'; ?>
         </div>
-
         <div class="text">
           <p><?php echo $currentBooks['book_name']?></p>
           <p><?php echo "نووسەر: " . $currentBooks['book_author']?></p>
         </div>
-
-        <div class="buttons">
-          <a href="js/Literature Review.pdf" class="reading-button">خوێندنەوە</a>
-          <a href="" download="test" class="download-button">دابەزاندن</a>
-        </div>
-        
+        <a href="" download="test" class="download-button">دابەزاندن</a>
       </div>
       <?php
           }
@@ -147,16 +175,10 @@
 
   </section>
 
-  <div id="pdf-container">
-    <iframe id="pdf-viewer" src="" type="application/pdf">
-  </div>
-
-
-
-
 
   <!-- custom js file -->
-  <script src='./js/scripts.js'></script>
+  <script src="js/scripts.js"></script>
 
 </body>
+
 </html>
