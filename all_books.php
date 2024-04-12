@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ckb">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,11 +54,17 @@
         <div class="image">
           <?php echo '<a href="book_details.php?id=' . $currentBooks['book_id'] . '"><img src="uploaded_image/patata_xorakan.jpg" alt=""></a>'; ?>
         </div>
+
         <div class="text">
           <p><?php echo $currentBooks['book_name']?></p>
           <p><?php echo "نووسەر: " . $currentBooks['book_author']?></p>
         </div>
-        <a href="" download="test" class="download-button">دابەزاندن</a>
+
+        <div class="buttons">
+          <a href="js/Literature Review.pdf" class="reading-button">خوێندنەوە</a>
+          <a href="" download="test" class="download-button">دابەزاندن</a>
+        </div>
+        
       </div>
       <?php
           }
@@ -140,9 +146,16 @@
 
   </section>
 
+  <div id="pdf-container">
+    <iframe id="pdf-viewer" src="" type="application/pdf">
+  </div>
+
+
+
+
 
   <!-- custom js file -->
-  <script src="js/scripts.js"></script>
+  <script src='./js/scripts.js'></script>
 
 </body>
 </html>

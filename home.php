@@ -27,6 +27,10 @@ include 'config.php';
       </div>
     </div>
   </section>
+
+
+  <!-- custom js file -->
+  <script src='./js/scripts.js'></script>
 </body>
 
 </html>

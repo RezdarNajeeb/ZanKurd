@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.form-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  background-color: white;
+  text-align: center;
+}
+
+.form-container form h3 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+form .input-control {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-control .input .field {
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: var(--background-color);
+  padding: 1.2rem 1.4rem;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  border: var(--border);
+  margin: 1rem 0;
+}
+
+.input-control .input {
+  position: relative;
+}
+
+.input-control .input i {
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.input-control .input input:focus {
+  outline: 2px solid var(--secondary-color);
+}
+
+.input-control .input input:focus + i {
+  color: var(--secondary-color);
+}
+
+.input-control span {
+  color: rgb(217, 48, 48);
+  font-size: 1.4rem;
+  text-align: start;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-container .show-pass-container {
+  justify-self: start;
+}
+
+.checkbox-container .show-pass-container, .checkbox-container .remember-me-container {
+  display: flex;
+  align-items: center;
+}
+
+.show-pass-container label, .remember-me-container label{
+  font-size: 1.6rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.show-pass-container input, .remember-me-container input {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.form-container form p {
+  padding-top: 1.5rem;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+.form-container form p a {
+  color: var(--primary-color);
+}
+
+.form-container form p a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.form-container form p a:hover::after {
+  width: 100%;
+}
+
