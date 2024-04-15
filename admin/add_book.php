@@ -1,4 +1,6 @@
 <?php
+include '../config.php';
+
 include 'admin_header.php';
 
 
@@ -18,7 +20,7 @@ if (isset($_POST['add_book'])) {
     $file_tmp_name = $_FILES['file']['tmp_name'];
     $file_folder = 'uploaded_files/' . $file;
 
-    $select_book_name = mysqli_query($conn, "SELECT name FROM `books` WHERE book_name = '$name'") or die('query failed');
+    $select_book_name = mysqli_query($conn, "SELECT book_name FROM `books` WHERE book_name = '$name'") or die('query failed');
 
     if (mysqli_num_rows($select_book_name) > 0) {
         $message[] = 'کتێبەکە پێشتر زیادکراوە.';
@@ -29,8 +31,8 @@ if (isset($_POST['add_book'])) {
         if ($add_book_query) {
             //lera 7isabi image size u shtm nakrdwa pewist nakat
 
-            move_uploaded_file($image_tmp_name, 'uploaded_image/' . $image);
-            move_uploaded_file($file_tmp_name, 'uploaded_files/' . $file);
+            move_uploaded_file($image_tmp_name, '../uploaded_files/' . $image);
+            move_uploaded_file($file_tmp_name, '../uploaded_files/' . $file);
 
             $message[] = 'کتێبەکە بە سەرکەوتوویی زیادکرا.';
 
@@ -51,6 +53,7 @@ if (isset($_POST['add_book'])) {
     <title>Document</title>
     <!-- custom css style link-->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/header_style.css">
     <!-- font awesome cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

@@ -29,7 +29,12 @@ include 'config.php';
       </div>
       <div class="book_details-text">
         <h1><?php echo $book_details['book_name'] ?></h1>
-        <p><?php echo "نووسەر: " . $book_details['book_author'] ?></p>
+        <p><strong>نووسەر:</strong> <?php echo $book_details['book_author'] ?></p>
+        <p><strong>بەش:</strong> <?php echo $book_details['book_category'] ?></p>
+        <p><strong>پێناسە:</strong> <?php echo $book_details['book_description'] ?></p>
+        <a href="text.pdf" class="primary-button">خوێندنەوە</a>
+        <a href="#" class="download-button">دابەزاندن</a>
+        <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
       </div>
     </div>
   </section>

@@ -25,7 +25,7 @@ if (isset($_COOKIE['remember-token'])) {
 
 if (isset($_POST['submit'])) {
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['password']));
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
          // Set the "Remember Me" cookie if the checkbox is checked
          if (isset($_POST['remember-me'])) {
             $token = bin2hex(random_bytes(16));
-            setcookie('remember-token', $token, time() + (86400 * 30), "/", "", true, true);
+            setcookie('remember-token', $token, time() + (86400 * 30), "/");
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
          header('location: admin/admin_page.php');
@@ -51,10 +51,10 @@ if (isset($_POST['submit'])) {
          // Set the "Remember Me" cookie if the checkbox is checked
          if (isset($_POST['remember-me'])) {
             $token = bin2hex(random_bytes(16));
-            setcookie('remember-token', $token, time() + (86400 * 30), "/", "", true, true);
+            setcookie('remember-token', $token, time() + (86400 * 30), "/");
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
-         header('location: home.php');
+         header('location: all_books.php');
          exit(); // ensure that the script stops executing after redirecting
       }
    } else {
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
    </div>
 
    <!-- custom js script link-->
-   <script src="js/scripts.js"></script>
+   <script src="js/scripts.js" defer></script>
 </body>
 
 </html>

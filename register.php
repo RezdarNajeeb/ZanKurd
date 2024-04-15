@@ -5,13 +5,13 @@ if (isset($_POST['submit'])) {
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['password']));
+   $cpass = mysqli_real_escape_string($conn, hash('sha256', $_POST['cpassword']));
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'") or die('query failed');
 
    if (mysqli_num_rows($select_users) > 0) {
-      $messages[] = 'User already exists!';
+      $messages[] = 'ئەو بەکارهێنەرە دووبارەیە!';
    } else {
       mysqli_query($conn, "INSERT INTO `users`(name, email, password) VALUES('$name', '$email', '$cpass')") or die('query failed');
       header('location:login.php');
@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
    </div>
 
    <!-- custom js script link-->
-   <script src="js/scripts.js"></script>
+   <script src="js/scripts.js" defer></script>
 
 </body>
 

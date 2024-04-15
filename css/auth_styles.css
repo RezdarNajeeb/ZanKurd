@@ -61,9 +61,9 @@ form .input-control {
   font-size: 2rem;
   position: absolute;
   top: 50%;
-  left: 1rem;
+  left: 10px;
   transform: translateY(-50%);
-  color: #aaa;
+  color: var(--gray-color);
 }
 
 .input-control .input input:focus {
