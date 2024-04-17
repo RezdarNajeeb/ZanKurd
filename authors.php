@@ -1,10 +1,11 @@
 <?php
-  include 'config.php';
-  session_start()
+include 'config.php';
+session_start()
 ?>
 
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,9 @@
   <!-- font awesome cdn-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-  
+
   <?php
   include 'header.php';
   include 'template.php';
@@ -23,8 +25,10 @@
   showAllBoxes($conn, 'authors');
   ?>
 
-
+  <!-- custom js link-->
   <script src="js/scripts.js"></script>
-
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

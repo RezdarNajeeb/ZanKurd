@@ -78,3 +78,7 @@
         <div id="blur-effect" class="blur-effect"></div>
     </div>
 </header>
+
+<div class="loader-container" id="loader-container">
+    <i class="fa-solid fa-book fa-fade"></i>
+</div>

@@ -27,6 +27,8 @@ session_start();
 
   <!-- custom js file -->
   <script src="js/scripts.js" defer></script>
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

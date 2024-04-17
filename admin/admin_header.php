@@ -75,9 +75,13 @@
         <div id="user-box" class="user-box">
             <p>ناو : <span><?php echo isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : ''; ?></span></p>
             <p>ئیمەیڵ : <span><?php echo isset($_SESSION['admin_email']) ? $_SESSION['admin_email'] : ''; ?></span></p>
-            <a href="logout.php" class="delete-button">چوونەدەرەوە</a>
+            <a href="../logout.php" class="delete-button">چوونەدەرەوە</a>
         </div>
 
         <div id="blur-effect" class="blur-effect"></div>
     </div>
 </header>
+
+<div class="loader-container" id="loader-container">
+    <i class="fa-solid fa-book fa-fade"></i>
+</div>

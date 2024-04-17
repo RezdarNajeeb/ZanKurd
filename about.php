@@ -24,4 +24,9 @@ session_start();
   ?>
 </body>
 
+
+  <!-- custom js link-->
+  <script src="js/scripts.js"></script>
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 </html>

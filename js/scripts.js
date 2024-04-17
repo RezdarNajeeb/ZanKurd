@@ -149,3 +149,14 @@ if (!(dropdownMenuContainer == null)) {
     dropdownLinkIcon.style.transform = window.innerWidth < 768 ? "" : ""; // Reset rotation
   });
 }
+
+// Loading spinner functionality
+const loaderContainer = document.getElementById("loader-container");
+
+if (loaderContainer !== null) {
+  window.onload = function () {
+    setTimeout(() => {
+      loaderContainer.style.display = "none";
+    }, 500);
+  };
+}
