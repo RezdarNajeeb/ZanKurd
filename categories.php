@@ -1,11 +1,10 @@
 <select name="category" id="category">
     <?php
-    $categories = ['roman','shi3r','dastan'];
+    $categories = ['ڕۆمان', 'شیعر', 'داستان', 'سیاسی', 'زانست', 'هونەر'];
 
     foreach ($categories as $category) {
         echo "<option value='$category'>$category</option>";
     }
-
 
     ?>
 </select>

@@ -35,7 +35,7 @@
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="all_books.php" id="all-books-link">هەموو</a>
+                                    <a href="books.php" id="all-books-link">هەموو</a>
                                 </li>
                                 <li>
                                     <a href="#">ڕۆمان</a>
