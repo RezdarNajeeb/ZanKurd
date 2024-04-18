@@ -1,3 +1,8 @@
+/* Search Container style for Admin */
+.search-container {
+  justify-content: right;
+}
+
 /* Dashboard style */
 .dashboard .box-container {
   display: grid;

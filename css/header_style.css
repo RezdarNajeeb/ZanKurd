@@ -10,6 +10,7 @@
 
 .flex {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
@@ -19,6 +20,10 @@
 .header-1 {
   background-color: var(--primary-color);
   padding: 0.48rem 0;
+}
+
+.header-1 .flex {
+  flex-direction: row;
 }
 
 .header-1 .flex p {
@@ -87,6 +92,14 @@
   position: relative;
 }
 
+.header-2.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
 .logo {
   align-self: center;
   font-size: 4rem;
@@ -137,7 +150,7 @@ nav ul li a:hover {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  padding-top: 2.2rem;
+  padding-top: 2.24rem;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   transition: clip-path 0.3s;
 }
@@ -189,6 +202,7 @@ nav ul li a:hover {
 
 .icons {
   display: flex;
+  flex-direction: row-reverse;
   column-gap: 1.6rem;
   font-size: 3rem;
   color: white;
@@ -211,7 +225,7 @@ nav ul li a:hover {
 .user-box {
   position: absolute;
   top: 100%;
-  left: 3.5%;
+  right: 3.5%;
   width: 30rem;
   font-size: 1.6rem;
   padding: 1rem;
@@ -250,6 +264,33 @@ nav ul li a:hover {
   display: none;
 }
 
+.scroll-to-top-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  line-height: 5.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+}
+
+.scroll-to-top-container i {
+  font-size: 2.5rem;
+}
+
+.scroll-to-top-container:hover {
+  background-color: var(--secondary-color);
+}
+
+.scroll-to-top-container.show {
+  display: block;
+}
+
 /* Media Queries */
 @media screen and (max-width: 1024px) {
   html {
@@ -262,6 +303,10 @@ nav ul li a:hover {
 
   .icons {
     font-size: 2.5rem;
+  }
+
+  .dropdown-menu-container {
+    padding-top: 2.18rem;
   }
 }
 
@@ -357,12 +402,12 @@ nav ul li a:hover {
   .search-container {
     width: 50%;
     justify-content: center;
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     transition: clip-path 0.3s;
   }
 
   .search-container.show {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
   }
 }
 

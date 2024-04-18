@@ -1,16 +1,12 @@
 <header>
     <div class="header-1">
         <div class="flex">
-            <?php
-            if (isset($_SESSION['user_name'])) {
-                echo '<p>بەخێربێی <span>' . $_SESSION['user_name'] . '</span></p>';
-            } else {
-            ?>
-                <div class="login-register">
-                    <a href="login.php">چوونەژوورەوە</a>
-                    <a href="register.php">خۆتۆمارکردن</a>
-                </div>
-            <?php } ?>
+            <div class="search-container" id="search-container">
+                <form action="">
+                    <input type="text" placeholder="گەڕان.." name="search">
+                    <i class="fa fa-search"></i>
+                </form>
+            </div>
 
             <div class="share">
                 <a href="#" class="fa fa-facebook-f"></a>
@@ -23,7 +19,6 @@
     <div class="header-2">
         <div class="flex">
             <a href="dashboard.php" class="logo">بەڕێوەبردن</a>
-
             <nav>
                 <ul id="nav" class="nav">
                     <li>
@@ -58,13 +53,6 @@
                 </ul>
             </nav>
 
-            <div class="search-container" id="search-container">
-                <form action="">
-                    <input type="text" placeholder="گەڕان.." name="search">
-                    <i class="fa fa-search"></i>
-                </form>
-            </div>
-
             <div class="icons">
                 <a href="#" id="search-btn" class="fa fa-search search-btn"></a>
                 <div id="user-btn" class="fa fa-user"></div>
@@ -84,4 +72,8 @@
 
 <div class="loader-container" id="loader-container">
     <i class="fa-solid fa-book fa-fade"></i>
+</div>
+
+<div class="scroll-to-top-container">
+    <i class="fa fa-caret-up"></i>
 </div>
