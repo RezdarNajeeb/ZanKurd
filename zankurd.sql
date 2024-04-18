@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2024 at 12:37 AM
+-- Generation Time: Apr 18, 2024 at 02:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,10 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `authors` (
-  `id` int(255) NOT NULL,
-  `author_name` varchar(255) NOT NULL,
-  `author_image` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`id`, `name`, `image`, `description`) VALUES
+(1, 'هاوکار', 'l2_1.png', '');
 
 -- --------------------------------------------------------
 
@@ -40,30 +48,35 @@ CREATE TABLE `authors` (
 --
 
 CREATE TABLE `books` (
-  `book_id` int(11) NOT NULL,
-  `book_name` varchar(25) NOT NULL,
-  `book_author` varchar(25) NOT NULL,
-  `book_image` varchar(100) NOT NULL,
-  `book_file` varchar(255) NOT NULL,
-  `book_category` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `author` varchar(25) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `category` varchar(25) NOT NULL,
+  `description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`book_id`, `book_name`, `book_author`, `book_image`, `book_file`, `book_category`) VALUES
-(1, 'xawnakan', 'rezdar', '', '', ''),
-(2, 'bro', 'hawkar', '', '', ''),
-(3, 'mn', 'shko', '', '', ''),
-(4, 'to', 'karwan', '', '', ''),
-(5, 'aw', 'muhamad', '', '', ''),
-(6, 'ema', 'barham', '', '', ''),
-(7, 'awan', 'ahmad', '', '', ''),
-(8, 'ewa', 'hiwa', '', '', ''),
-(9, 'let\'s go', 'azad', '', '', ''),
-(10, 'what?', 'hemn', '', '', ''),
-(11, 'why you laughing?', 'joe biden', '', '', '');
+INSERT INTO `books` (`id`, `name`, `author`, `image`, `file`, `category`, `description`) VALUES
+(11, 'h', 'dddlluu', 'l2_1.png', 'Lecture1.pdf', 'ڕۆمان', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(25) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `message` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,12 +85,20 @@ INSERT INTO `books` (`book_id`, `book_name`, `book_author`, `book_image`, `book_
 --
 
 CREATE TABLE `users` (
-  `id` int(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `user_type` varchar(20) NOT NULL DEFAULT 'user'
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `user_type` varchar(10) NOT NULL DEFAULT 'admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`) VALUES
+(1, 'rezdarnajeeb', 'rezdarnajim@gmail.com', 'Rezdar499321#', 'admin'),
+(2, 'rezdarnajeeb', 'rezdarzarayani123@gmail.com', 'Rezdar499321#', 'user');
 
 --
 -- Indexes for dumped tables
@@ -93,7 +114,13 @@ ALTER TABLE `authors`
 -- Indexes for table `books`
 --
 ALTER TABLE `books`
-  ADD PRIMARY KEY (`book_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -109,19 +136,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
