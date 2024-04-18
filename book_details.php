@@ -22,9 +22,10 @@ if($userType == 'admin'){
 <body>
 
   <?php
+    include 'header.php';
     $selected_id = $_GET['id'];
     
-    $select_book = mysqli_query($conn, "SELECT * FROM books WHERE book_id = $selected_id") or die ("Failed to select book");
+    $select_book = mysqli_query($conn, "SELECT * FROM books WHERE id = $selected_id") or die ("Failed to select book");
 
     $book_details = mysqli_fetch_assoc($select_book);
   ?>
@@ -32,13 +33,13 @@ if($userType == 'admin'){
   <section class="book_details">
     <div class="book_details-container">
       <div class="book_details-image">
-        <?php echo '<img src="uploaded_image/' . $book_details['book_image'] . '" alt="">' ?>
+        <?php echo '<img src="admin/uploaded_image/' . $book_details['image'] . '" alt="">' ?>
       </div>
       <div class="book_details-text">
-        <h1><?php echo $book_details['book_name'] ?></h1>
-        <p><strong>نووسەر:</strong> <?php echo $book_details['book_author'] ?></p>
-        <p><strong>بەش:</strong> <?php echo $book_details['book_category'] ?></p>
-        <p><strong>پێناسە:</strong> <?php echo $book_details['book_description'] ?></p>
+        <h1><?php echo $book_details['name'] ?></h1>
+        <p><strong>نووسەر:</strong> <?php echo $book_details['author'] ?></p>
+        <p><strong>بەش:</strong> <?php echo $book_details['category'] ?></p>
+        <p><strong>پێناسە:</strong> <?php echo $book_details['description'] ?></p>
         <a href="text.pdf" class="primary-button">خوێندنەوە</a>
         <a href="#" class="download-button">دابەزاندن</a>
         <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
