@@ -103,6 +103,15 @@ authForm.forEach((form) => {
   });
 });
 
+ // If user is logged in or registered, replace current URL with home.php if admin else dashboard.php
+// if (userType != undefined && userType == 'admin') {
+//     history.replaceState(null, '', 'admin/dashboard.php');
+// }
+// else {
+//     history.replaceState(null, '', 'home.php');
+// }
+
+
 // User box functionality
 if (document.getElementById("user-btn") != null)
   document.getElementById("user-btn").addEventListener("click", function () {

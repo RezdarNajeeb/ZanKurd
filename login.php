@@ -2,6 +2,14 @@
 include 'config.php';
 session_start();
 
+if (isset($_SESSION['user_type'])) {
+   if ($_SESSION['user_type'] == 'admin') {
+      header('refresh:0;url=admin/dashboard.php');
+   } else {
+      header('refresh:0;url=home.php');
+   }
+}
+
 // Check if the "Remember Token" cookie exists and log in the user if valid
 // if (isset($_COOKIE['remember-token'])) {
 //    $token = $_COOKIE['remember-token'];

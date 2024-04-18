@@ -47,10 +47,11 @@
 
             <?php if (!($tableName == 'authors')) { ?>
               <div class="buttons">
+                <?php if(!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
                 <a href="<?php echo $currentBoxes['file']; ?>" class="reading-button">خوێندنەوە</a>
                 <a href="" download=<?php echo $currentBoxes['file']; ?> class="download-button">دابەزاندن</a>
 
-                <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
+                <?php } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
                   <a href="<?php echo $tableName . '.php?delete=' . $currentBoxes['id']; ?>" class="delete-button" onclick="return confirm('Are You Sure?')">سڕینەوە</a>
                 <?php } ?>
