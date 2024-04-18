@@ -42,6 +42,7 @@ if(!isset($admin_id)){
   include 'admin_header.php';
   ?>
 
+<!-- add book form -->
   <section class="add-books">
     <h1>زیادکردنی کتێب</h1>
     <div class="form-container">
@@ -68,6 +69,7 @@ if(!isset($admin_id)){
   </section>
 
   <?php
+  // add book functionallity
   if (isset($_POST['add_book'])) {
     $name = mysqli_real_escape_string($conn, $_POST['book_name']);
 
@@ -102,13 +104,13 @@ if(!isset($admin_id)){
     }
   }
   
-
+//showing books
   include '../template.php';
-  showAllBoxes($conn, 'books');
+  showAllBoxes('books',"SELECT * FROM `books`");
   ?>
 
+<!-- update book form -->
   <section class="edit-book-form">
-
     <?php
     if (isset($_GET['update'])) {
       $update_id = $_GET['update'];
@@ -177,7 +179,7 @@ if(!isset($admin_id)){
   }
 
 
-  // update book
+  // update book functionallity
   if (isset($_POST['update_book'])) {
 
     $update_book_id = $_POST['update_book_id'];

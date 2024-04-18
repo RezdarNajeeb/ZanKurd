@@ -1,8 +1,10 @@
-<?php function showAllBoxes($conn, $tableName)
+<?php 
+function showAllBoxes($tableName, $query)
 { ?>
   <section class="all-books">
     <?php
-    $select_all_rows = mysqli_query($conn, "SELECT * FROM `$tableName`") or die('query failed');
+    include 'config.php';
+    $select_all_rows = mysqli_query($conn, $query) or die('query failed');
 
     // Define the total number of rows
     $totalBoxes = mysqli_num_rows($select_all_rows);
@@ -19,9 +21,9 @@
 
     // Calculate the offset for the SQL query
     $offset = ($page - 1) * $boxesPerPage;
-
+    
     // Select boxes for the current page using LIMIT
-    $select_current_boxes = mysqli_query($conn, "SELECT * FROM `$tableName` LIMIT $offset, $boxesPerPage") or die('query failed');
+    $select_current_boxes = mysqli_query($conn, "$query LIMIT $offset, $boxesPerPage") or die('query failed');
     ?>
 
     <!-- Display the boxes for the current page -->
@@ -47,10 +49,11 @@
 
             <?php if (!($tableName == 'authors')) { ?>
               <div class="buttons">
+                <?php if(!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
                 <a href="<?php echo $currentBoxes['file']; ?>" class="reading-button">خوێندنەوە</a>
                 <a href="" download=<?php echo $currentBoxes['file']; ?> class="download-button">دابەزاندن</a>
 
-                <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
+                <?php } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
                   <a href="<?php echo $tableName . '.php?delete=' . $currentBoxes['id']; ?>" class="delete-button" onclick="return confirm('Are You Sure?')">سڕینەوە</a>
                 <?php } ?>

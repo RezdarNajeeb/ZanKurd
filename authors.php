@@ -28,7 +28,7 @@ if($userType == 'admin'){
   include 'header.php';
   include 'template.php';
 
-  showAllBoxes($conn, 'authors');
+  showAllBoxes('authors',"SELECT * FROM `authors`");
   ?>
 
   <!-- custom js link-->

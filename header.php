@@ -22,7 +22,7 @@
 
     <div class="header-2">
         <div class="flex">
-            <a href="home.php" class="logo">زانکورد.</a>
+            <a href="home.php" class="logo">زانکورد</a>
 
             <nav>
                 <ul id="nav" class="nav">
