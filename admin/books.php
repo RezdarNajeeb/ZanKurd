@@ -4,8 +4,8 @@ session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
-if(!isset($admin_id)){
-   header('location:../login.php');
+if (!isset($admin_id)) {
+  header('location:../login.php');
 }
 
 ?>
@@ -42,29 +42,29 @@ if(!isset($admin_id)){
   include 'admin_header.php';
   ?>
 
-<!-- add book form -->
+  <!-- add book form -->
   <section class="add-books">
     <h1>زیادکردنی کتێب</h1>
     <div class="form-container">
-    <form action="books.php" method="POST" enctype="multipart/form-data">
-      <label for="book_name">ناوی کتێب</label>
-      <input type="text" name="book_name" class="field" required>
+      <form action="books.php" method="POST" enctype="multipart/form-data">
+        <label for="book_name">ناوی کتێب</label>
+        <input type="text" name="book_name" class="field" required>
 
-      <label for="author_name">نووسەر</label>
-      <input type="text" name="author_name" class="field" required>
+        <label for="author_name">نووسەر</label>
+        <input type="text" name="author_name" class="field" required>
 
 
-      <label for="category">چەشن</label>
-      <?php include '../categories.php' ?>
+        <label for="category">چەشن</label>
+        <?php include '../categories.php' ?>
 
-      <label for="book_image">بەرگ</label>
-      <input type="file" name="image" class="field" accept="image/jpg, image/jpeg, image/png" required>
+        <label for="book_image">بەرگ</label>
+        <input type="file" name="image" class="field" accept="image/jpg, image/jpeg, image/png" required>
 
-      <label for="book_file">فایل</label>
-      <input type="file" name="file" class="field" accept="application/pdf" required>
+        <label for="book_file">فایل</label>
+        <input type="file" name="file" class="field" accept="application/pdf" required>
 
-      <button type="submit" name="add_book">زیادکردن</button>
-    </form>
+        <button type="submit" name="add_book">زیادکردن</button>
+      </form>
     </div>
   </section>
 
@@ -103,20 +103,42 @@ if(!isset($admin_id)){
       }
     }
   }
-  
-//showing books
+
+  //showing books
   include '../template.php';
 
   $title = isset($_GET['title']) ? $_GET['title'] : 'all';
   $query = "SELECT * FROM `books`";
   if ($title !== 'all') {
-     $query = "SELECT * FROM `books` WHERE `category`='$title'";
+
+    switch ($title) {
+      case 'novels':
+        $title = 'ڕۆمان';
+        break;
+      case 'poetries':
+        $title = 'شیعر';
+        break;
+      case 'چیرۆک':
+        $title = 'stories';
+        break;
+      case 'politics':
+        $title = 'سیاسی';
+        break;
+      case 'sciences':
+        $title = 'زانست';
+        break;
+      case 'arts':
+        $title = 'هونەر';
+        break;
+    }
+
+    $query = "SELECT * FROM `books` WHERE `category`='$title'";
   }
 
   showAllBoxes('books', $query);
   ?>
 
-<!-- update book form -->
+  <!-- update book form -->
   <section class="edit-book-form">
     <?php
     if (isset($_GET['update'])) {
@@ -226,4 +248,5 @@ if(!isset($admin_id)){
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

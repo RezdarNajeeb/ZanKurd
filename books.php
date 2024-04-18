@@ -4,8 +4,8 @@ session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
-if($userType == 'admin'){
-   header('location: logout.php');
+if ($userType == 'admin') {
+  header('location: logout.php');
 }
 ?>
 
@@ -31,7 +31,28 @@ if($userType == 'admin'){
   $title = isset($_GET['title']) ? $_GET['title'] : 'all';
   $query = "SELECT * FROM `books`";
   if ($title !== 'all') {
-     $query = "SELECT * FROM `books` WHERE `category`='$title'";
+    switch ($title) {
+      case 'novels':
+        $title = 'ڕۆمان';
+        break;
+      case 'poetries':
+        $title = 'شیعر';
+        break;
+      case 'چیرۆک':
+        $title = 'stories';
+        break;
+      case 'politics':
+        $title = 'سیاسی';
+        break;
+      case 'sciences':
+        $title = 'زانست';
+        break;
+      case 'arts':
+        $title = 'هونەر';
+        break;
+    }
+
+    $query = "SELECT * FROM `books` WHERE `category`='$title'";
   }
 
   showAllBoxes('books', $query);
