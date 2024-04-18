@@ -33,7 +33,8 @@
           <div class='box'>
             <div class="image"> <!-- showing the box image -->
               <a href="book_details.php?id=<?php echo $currentBoxes['id'] ?>">
-                <img src='<?php echo ($_SESSION['user_type'] == 'admin' ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt=""></a>
+                <img src='<?php echo ((isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt="">
+              </a>
             </div>
 
             <div class="text">
@@ -46,16 +47,16 @@
 
             <?php if (!($tableName == 'authors')) { ?>
               <div class="buttons">
-                <?php if ($_SESSION['user_type'] == 'user') { ?>
-                  <a href="<?php echo $currentBoxes['file']; ?>" class="reading-button">خوێندنەوە</a>
-                  <a href="" download=<?php echo $currentBoxes['file']; ?> class="download-button">دابەزاندن</a>
-                <?php } else if ($_SESSION['user_type'] == 'admin') { ?>
+                <a href="<?php echo $currentBoxes['file']; ?>" class="reading-button">خوێندنەوە</a>
+                <a href="" download=<?php echo $currentBoxes['file']; ?> class="download-button">دابەزاندن</a>
+
+                <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
                   <a href="<?php echo $tableName . '.php?delete=' . $currentBoxes['id']; ?>" class="delete-button" onclick="return confirm('Are You Sure?')">سڕینەوە</a>
                 <?php } ?>
               </div>
               <?php } else {
-              if ($_SESSION['user_type'] == 'admin') { ?>
+              if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                 <div class="buttons">
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
                   <a href="<?php echo $tableName . '.php?delete=' . $currentBoxes['id']; ?>" class="delete-button" onclick="return confirm('Are You Sure?')">سڕینەوە</a>

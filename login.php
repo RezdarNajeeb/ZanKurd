@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
             setcookie('remember-token', $token, time() + (86400 * 30), "/");
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
-         header('location: admin/books.php');
+         header('location: admin/dashboard.php');
          exit(); // ensure that the script stops executing after redirecting
       } elseif ($row['user_type'] == 'user') {
          $_SESSION['user_name'] = $row['name'];
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
             setcookie('remember-token', $token, time() + (86400 * 30), "/");
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
-         header('location: books.php');
+         header('location: home.php');
          exit(); // ensure that the script stops executing after redirecting
       }
    } else {
