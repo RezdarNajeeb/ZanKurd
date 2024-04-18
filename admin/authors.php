@@ -99,7 +99,7 @@ if(!isset($admin_id)){
   
 //showing authors
   include '../template.php';
-  showAllBoxes('autors',"SELECT * FROM `authors`");
+  showAllBoxes('autors',"SELECT * FROM `authors`", "author_details.php");
   ?>
 
 <!-- update author form -->

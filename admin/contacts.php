@@ -23,7 +23,29 @@ if(!isset($admin_id)){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  
+
+
+<section class="all_messages">
+
+  <?php
+
+  $select_all_rows = mysqli_query($conn, "SELECT * FROM contacts");
+  $totalMessages = mysqli_num_rows($select_all_rows);
+  if($totalMessages > 0){
+    while($currentMessages = mysqli_fetch_assoc($select_all_rows)){
+  ?>
+  <div class="message_box">
+    <p><?php echo $currentMessages['name'] ?></p>
+    <p><?php echo $currentMessages['email'] ?></p>
+    <p><?php echo $currentMessages['message'] ?></p>
+
+  </div>
+
+  <?php
+    }};
+  ?>
+
+</section>
 
 
 

@@ -28,7 +28,7 @@ if($userType == 'admin'){
   include 'header.php';
   include 'template.php';
 
-  showAllBoxes('books',"SELECT * FROM `books`");
+  showAllBoxes('books',"SELECT * FROM `books`", "book_details.php");
   ?>
 
   <!-- custom js file -->
