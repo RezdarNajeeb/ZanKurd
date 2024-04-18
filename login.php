@@ -2,34 +2,30 @@
 include 'config.php';
 session_start();
 
-if (isset($_SESSION['user_type'])) {
-   if ($_SESSION['user_type'] == 'admin') {
-      header('refresh:0;url=admin/dashboard.php');
-   } else {
-      header('refresh:0;url=home.php');
-   }
-}
+// if (isset($_SESSION['user_type'])) {
+//    echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
+// }
 
 // Check if the "Remember Token" cookie exists and log in the user if valid
-// if (isset($_COOKIE['remember-token'])) {
-//    $token = $_COOKIE['remember-token'];
-//    $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE remember_token = '$token'") or die('query failed');
+if (isset($_COOKIE['remember-token'])) {
+   $token = $_COOKIE['remember-token'];
+   $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE remember_token = '$token'") or die('query failed');
 
-//    if (mysqli_num_rows($select_user) > 0) {
-//       $row = mysqli_fetch_assoc($select_user);
-//       $_SESSION['user_id'] = $row['id'];
-//       $_SESSION['user_name'] = $row['name'];
-//       $_SESSION['user_email'] = $row['email'];
-//       $_SESSION['user_type'] = $row['user_type'];
-//       if ($row['user_type'] == 'admin') {
-//          header('location: all_books.php');
-//          exit();
-//       } else {
-//          header('location: home.php');
-//          exit();
-//       }
-//    }
-// }
+   if (mysqli_num_rows($select_user) > 0) {
+      $row = mysqli_fetch_assoc($select_user);
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['user_name'] = $row['name'];
+      $_SESSION['user_email'] = $row['email'];
+      $_SESSION['user_type'] = $row['user_type'];
+      if ($row['user_type'] == 'admin') {
+         header('location: all_books.php');
+         exit();
+      } else {
+         header('location: index.php');
+         exit();
+      }
+   }
+}
 
 if (isset($_POST['submit'])) {
    $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -64,7 +60,7 @@ if (isset($_POST['submit'])) {
             setcookie('remember-token', $token, time() + (86400 * 30), "/");
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
-         header('location: home.php');
+         header('location: index.php');
          exit(); // ensure that the script stops executing after redirecting
       }
    } else {

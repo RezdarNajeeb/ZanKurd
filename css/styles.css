@@ -52,6 +52,19 @@
   }
 }
 
+/* Animation for fading in/out */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 * {
   font-family: rudaw;
   margin: 0;
@@ -193,22 +206,24 @@ section {
 }
 
 /* Loader style*/
-.loader-container {
+.loader-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 10000;
 }
 
-.loader-container i {
+.loader-background + #loader-icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 10rem;
   color: var(--primary-color);
+  z-index: 10001;
 }
 
 /* Alert Messages style */

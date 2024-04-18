@@ -103,14 +103,12 @@ authForm.forEach((form) => {
   });
 });
 
- // If user is logged in or registered, replace current URL with home.php if admin else dashboard.php
-// if (userType != undefined && userType == 'admin') {
-//     history.replaceState(null, '', 'admin/dashboard.php');
+// If user is logged in or registered, replace current URL with home.php if user else dashboard.php
+// if (typeof userType != "undefined" && userType == "admin") {
+//   history.replaceState(null, "", "admin/dashboard.php");
+// } else {
+//   history.replaceState(null, "", "home.php");
 // }
-// else {
-//     history.replaceState(null, '', 'home.php');
-// }
-
 
 // User box functionality
 if (document.getElementById("user-btn") != null)
@@ -160,12 +158,14 @@ if (!(dropdownMenuContainer == null)) {
 }
 
 // Loading functionality
-const loaderContainer = document.getElementById("loader-container");
+const loaderBackground = document.getElementById("loader-background");
+const loaderIcon = document.getElementById("loader-icon");
 
-if (loaderContainer !== null) {
+if (loaderBackground !== null && loaderIcon !== null) {
   window.onload = function () {
     setTimeout(() => {
-      loaderContainer.style.display = "none";
+      loaderIcon.style.display = "none";
+      loaderBackground.style.display = "none";
     }, 500);
   };
 }
@@ -189,10 +189,10 @@ window.addEventListener("scroll", function () {
     scrollToTopButton.classList.remove("show");
   }
 });
-
-scrollToTopButton.addEventListener("click", function () {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+if (scrollToTopButton !== null)
+  scrollToTopButton.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
-});

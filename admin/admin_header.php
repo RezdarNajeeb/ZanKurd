@@ -70,10 +70,9 @@
     </div>
 </header>
 
-<div class="loader-container" id="loader-container">
-    <i class="fa-solid fa-book fa-fade"></i>
-</div>
-
 <div class="scroll-to-top-container">
     <i class="fa fa-caret-up"></i>
 </div>
+
+<div class="loader-background" id="loader-background"></div>
+<i class="fa-solid fa-book fa-fade" id="loader-icon"></i>

@@ -22,12 +22,12 @@
 
     <div class="header-2">
         <div class="flex">
-            <a href="home.php" class="logo">زانکورد</a>
+            <a href="index.php" class="logo">زانکورد</a>
 
             <nav>
                 <ul id="nav" class="nav">
                     <li>
-                        <a href="home.php">سەرەتا</a>
+                        <a href="index.php">سەرەتا</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
@@ -79,6 +79,9 @@
     </div>
 </header>
 
-<div class="loader-container" id="loader-container">
-    <i class="fa-solid fa-book fa-fade"></i>
+<div class="scroll-to-top-container">
+    <i class="fa fa-caret-up"></i>
 </div>
+
+<div class="loader-background" id="loader-background"></div>
+<i class="fa-solid fa-book fa-fade" id="loader-icon"></i>
