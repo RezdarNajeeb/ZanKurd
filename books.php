@@ -28,7 +28,13 @@ if($userType == 'admin'){
   include 'header.php';
   include 'template.php';
 
-  showAllBoxes('books',"SELECT * FROM `books`", "book_details.php");
+  $title = isset($_GET['title']) ? $_GET['title'] : 'all';
+  $query = "SELECT * FROM `books`";
+  if ($title !== 'all') {
+     $query = "SELECT * FROM `books` WHERE `category`='$title'";
+  }
+
+  showAllBoxes('books', $query, "book_details.php");
   ?>
 
   <!-- custom js file -->

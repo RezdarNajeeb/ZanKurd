@@ -1,11 +1,11 @@
 <?php
 include 'config.php';
-session_start();
+// session_start();
 
 
-if (isset($_SESSION['user_type'])) {
-   echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
-}
+// if (isset($_SESSION['user_type'])) {
+//    echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
+// }
 
 
 

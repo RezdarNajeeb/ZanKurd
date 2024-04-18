@@ -22,12 +22,12 @@
 
     <div class="header-2">
         <div class="flex">
-            <a href="home.php" class="logo">زانکورد</a>
+            <a href="index.php" class="logo">زانکورد</a>
 
             <nav>
                 <ul id="nav" class="nav">
                     <li>
-                        <a href="home.php">سەرەتا</a>
+                        <a href="index.php">سەرەتا</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
@@ -37,12 +37,36 @@
                                 <li>
                                     <a href="books.php" id="all-books-link">هەموو</a>
                                 </li>
-                                <li>
-                                    <a href="#">ڕۆمان</a>
-                                </li>
-                                <li>
-                                    <a href="#">چیرۆک</a>
-                                </li>
+
+                                <?php
+                                include 'categories.php';
+
+                                echo '<script> document.getElementById("category").style.display = "none"; </script>';
+
+                                foreach ($categories as $category) {
+                                    $title = strtolower(str_replace(' ', '-', $category)); // Convert category name to lowercase and replace spaces with hyphens
+                                    switch ($title) {
+                                        case 'ڕۆمان':
+                                            $title = 'novels';
+                                            break;
+                                        case 'شیعر':
+                                            $title = 'poetries';
+                                            break;
+                                        case 'چیرۆک':
+                                            $title = 'stories';
+                                            break;
+                                        case 'سیاسی':
+                                            $title = 'politics';
+                                            break;
+                                        case 'زانست':
+                                            $title = 'sciences';
+                                            break;
+                                        case 'هونەر':
+                                            $title = 'arts';
+                                            break;
+                                    }
+                                    echo "<li><a href='books.php?title=$title'>$category</a></li>";
+                                } ?>
                             </ul>
                         </div>
                     </li>
@@ -79,6 +103,9 @@
     </div>
 </header>
 
-<div class="loader-container" id="loader-container">
-    <i class="fa-solid fa-book fa-fade"></i>
+<div class="scroll-to-top-container">
+    <i class="fa fa-caret-up"></i>
 </div>
+
+<div class="loader-background" id="loader-background"></div>
+<i class="fa-solid fa-book fa-fade" id="loader-icon"></i>

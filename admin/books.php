@@ -19,8 +19,8 @@ if(!isset($admin_id)){
   <title>کتێبەکان</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- custom css style link-->
-  <link rel="stylesheet" href="../css/header_style.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/header_style.css">
   <link rel="stylesheet" href="../css/admin_style.css">
   <!-- font awesome link-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -107,7 +107,14 @@ if(!isset($admin_id)){
   
 //showing books
   include '../template.php';
-  showAllBoxes('books',"SELECT * FROM `books`", "book_details.php");
+
+  $title = isset($_GET['title']) ? $_GET['title'] : 'all';
+  $query = "SELECT * FROM `books`";
+  if ($title !== 'all') {
+     $query = "SELECT * FROM `books` WHERE `category`='$title'";
+  }
+
+  showAllBoxes('books', $query, "book_details.php");
   ?>
 
 <!-- update book form -->
