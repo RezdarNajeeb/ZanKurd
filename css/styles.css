@@ -376,20 +376,43 @@ section {
 }
 
 /* Book Details style */
-.book_details {
-  padding: 2rem;
-  border: var(--border);
-  border-radius: 0.4rem;
-  margin: 2rem auto;
-  max-width: 60rem;
-  background-color: white;
-  box-shadow: var(--box-shadow);
+.book-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Book Details Image */
-.book_details-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.4rem;
-  margin-bottom: 1.6rem;
+.book-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 2rem;
+}
+
+.title {
+  grid-row: 1;
+  grid-column: 1 / span 2; /* Made the title span both columns */
+}
+
+.image {
+  grid-row: 2 / span 2; /* Made the image span both rows */
+  grid-column: 1;
+}
+
+.text {
+  grid-row: 1 / span 3; /* Made the text span all three rows */
+  grid-column: 2;
+  align-self: center; /* Centered the text vertically */
+}
+
+.buttons {
+  grid-row: 3;
+  grid-column: 1; /* Made the buttons align with the image */
 }

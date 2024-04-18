@@ -106,7 +106,14 @@ if(!isset($admin_id)){
   
 //showing books
   include '../template.php';
-  showAllBoxes('books',"SELECT * FROM `books`");
+
+  $title = isset($_GET['title']) ? $_GET['title'] : 'all';
+  $query = "SELECT * FROM `books`";
+  if ($title !== 'all') {
+     $query = "SELECT * FROM `books` WHERE `category`='$title'";
+  }
+
+  showAllBoxes('books', $query);
   ?>
 
 <!-- update book form -->

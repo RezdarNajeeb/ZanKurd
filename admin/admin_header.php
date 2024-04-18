@@ -32,12 +32,35 @@
                                 <li>
                                     <a href="books.php" id="all-books-link">هەموو</a>
                                 </li>
-                                <li>
-                                    <a href="#">ڕۆمان</a>
-                                </li>
-                                <li>
-                                    <a href="#">چیرۆک</a>
-                                </li>
+                                <?php
+                                include 'categories.php';
+
+                                echo '<script> document.getElementById("category").style.display = "none"; </script>';
+
+                                foreach ($categories as $category) {
+                                    $title = strtolower(str_replace(' ', '-', $category)); // Convert category name to lowercase and replace spaces with hyphens
+                                    switch ($title) {
+                                        case 'ڕۆمان':
+                                            $title = 'novels';
+                                            break;
+                                        case 'شیعر':
+                                            $title = 'poetries';
+                                            break;
+                                        case 'چیرۆک':
+                                            $title = 'stories';
+                                            break;
+                                        case 'سیاسی':
+                                            $title = 'politics';
+                                            break;
+                                        case 'زانست':
+                                            $title = 'sciences';
+                                            break;
+                                        case 'هونەر':
+                                            $title = 'arts';
+                                            break;
+                                    }
+                                    echo "<li><a href='books.php?title=$title'>$category</a></li>";
+                                } ?>
                             </ul>
                         </div>
                     </li>
