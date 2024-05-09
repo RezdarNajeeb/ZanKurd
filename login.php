@@ -2,6 +2,10 @@
 include 'config.php';
 session_start();
 
+if(isset($_SESSION['user_type'])) {
+   header('location: index.php');
+}
+
 // if (isset($_SESSION['user_type'])) {
 //    echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
 // }

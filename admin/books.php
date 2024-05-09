@@ -118,8 +118,8 @@ if (!isset($admin_id)) {
       case 'poetries':
         $title = 'شیعر';
         break;
-      case 'چیرۆک':
-        $title = 'stories';
+      case 'stories':
+        $title = 'چیرۆک';
         break;
       case 'politics':
         $title = 'سیاسی';

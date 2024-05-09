@@ -163,10 +163,8 @@ const loaderIcon = document.getElementById("loader-icon");
 
 if (loaderBackground !== null && loaderIcon !== null) {
   window.onload = function () {
-    setTimeout(() => {
-      loaderIcon.style.display = "none";
-      loaderBackground.style.display = "none";
-    }, 500);
+    loaderIcon.style.display = "none";
+    loaderBackground.style.display = "none";
   };
 }
 
