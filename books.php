@@ -55,7 +55,7 @@ if ($userType == 'admin') {
     $query = "SELECT * FROM `books` WHERE `category`='$title'";
   }
 
-  showAllBoxes('books', $query);
+  showAllBoxes('books', $query, "book_details.php");
   ?>
 
   <!-- custom js file -->

@@ -1,5 +1,5 @@
 <?php 
-function showAllBoxes($tableName, $query)
+function showAllBoxes($tableName, $query, $relatedFile)
 { ?>
   <section class="all-books">
     <?php
@@ -34,7 +34,7 @@ function showAllBoxes($tableName, $query)
       ?>
           <div class='box'>
             <div class="image"> <!-- showing the box image -->
-              <a href="book_details.php?id=<?php echo $currentBoxes['id'] ?>">
+              <a href="<?php echo $relatedFile;?>?id=<?php echo $currentBoxes['id'] ?>">
                 <img src='<?php echo ((isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt="">
               </a>
             </div>

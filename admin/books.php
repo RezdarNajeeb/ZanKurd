@@ -17,6 +17,7 @@ if (!isset($admin_id)) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>کتێبەکان</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- custom css style link-->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/header_style.css">
@@ -135,7 +136,7 @@ if (!isset($admin_id)) {
     $query = "SELECT * FROM `books` WHERE `category`='$title'";
   }
 
-  showAllBoxes('books', $query);
+  showAllBoxes('books', $query, "book_details.php");
   ?>
 
   <!-- update book form -->
