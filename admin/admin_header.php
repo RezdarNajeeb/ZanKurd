@@ -25,7 +25,7 @@
                         <a href="dashboard.php">زانیاریەکان</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
+                        <a href="books.php" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
 
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">
