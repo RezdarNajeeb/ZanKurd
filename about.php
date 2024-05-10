@@ -4,6 +4,7 @@ session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
+// if the user is admin, redirect to logout page
 if ($userType == 'admin') {
   header('location: logout.php');
 }
@@ -58,9 +59,9 @@ if ($userType == 'admin') {
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = $_POST['email'];
-    $category = mysqli_real_escape_string($conn, $_POST['message']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
 
-    mysqli_query($conn, "INSERT INTO `messages`(name, email, message)
+    mysqli_query($conn, "INSERT INTO `contacts`(name, email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
   }
   ?>

@@ -130,3 +130,33 @@
   width: 100%;
   max-width: 20rem;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75rem, 1fr));
+  gap: 1.5rem;
+  margin: 0 auto; 
+
+}
+
+.status {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--light-gray);
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  border: var(--border);
+  margin-top: 1rem;
+  position: relative;
+}
+
+.status i {
+  position: absolute;
+  left: .5rem;
+  top: .5rem;
+}
