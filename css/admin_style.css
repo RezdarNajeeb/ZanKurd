@@ -136,10 +136,10 @@
   grid-template-columns: repeat(auto-fit, minmax(75rem, 1fr));
   gap: 1.5rem;
   margin: 0 auto; 
-
+  padding-top: 5rem;
 }
 
-.status {
+.message_box {
   width: 100%;
   height: 5rem;
   display: flex;
@@ -155,7 +155,9 @@
   position: relative;
 }
 
-.status i {
+
+
+.message_box i {
   position: absolute;
   left: .5rem;
   top: .5rem;
