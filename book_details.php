@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
@@ -23,12 +23,12 @@ if ($userType == 'admin') {
 <body>
 
   <?php
-  include 'header.php';
+  require_once 'header.php';
   $selected_id = $_GET['id'];
 
   $select_book = mysqli_query($conn, "SELECT * FROM books WHERE id = $selected_id") or die("Failed to select book");
 
-  
+
 
   $book_details = mysqli_fetch_assoc($select_book);
   ?>
@@ -56,8 +56,12 @@ if ($userType == 'admin') {
     </div>
   </section>
 
+  <?php require_once 'footer.php'; ?>
 
   <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script src="js/scripts.js"></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>

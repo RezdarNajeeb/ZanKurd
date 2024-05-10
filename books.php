@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
@@ -25,8 +25,8 @@ if ($userType == 'admin') {
 
 <body>
   <?php
-  include 'header.php';
-  include 'template.php';
+  require_once 'header.php';
+  require_once 'template.php';
 
   $title = isset($_GET['title']) ? $_GET['title'] : 'all';
   $query = "SELECT * FROM `books`";
@@ -58,7 +58,12 @@ if ($userType == 'admin') {
   showAllBoxes('books', $query, "book_details.php");
   ?>
 
+  <?php require_once 'footer.php'; ?>
+
   <!-- custom js file -->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script src="js/scripts.js" defer></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>

@@ -1,14 +1,14 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 session_start();
 
-if(isset($_SESSION['user_type'])) {
+if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') {
+   header('location: admin/dashboard.php');
+   exit();
+} elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user') {
    header('location: index.php');
+   exit();
 }
-
-// if (isset($_SESSION['user_type'])) {
-//    echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
-// }
 
 // Check if the "Remember Token" cookie exists and log in the user if valid
 if (isset($_COOKIE['remember-token'])) {
@@ -22,7 +22,7 @@ if (isset($_COOKIE['remember-token'])) {
       $_SESSION['user_email'] = $row['email'];
       $_SESSION['user_type'] = $row['user_type'];
       if ($row['user_type'] == 'admin') {
-         header('location: all_books.php');
+         header('location: admin/dashboard.php');
          exit();
       } else {
          header('location: index.php');
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
          // Set the "Remember Me" cookie if the checkbox is checked
          if (isset($_POST['remember-me'])) {
             $token = bin2hex(random_bytes(16));
-            setcookie('remember-token', $token, time() + (86400 * 30), "/");
+            setcookie('remember-token', $token, time() + (86400 * 30));
             mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
          }
          header('location: admin/dashboard.php');

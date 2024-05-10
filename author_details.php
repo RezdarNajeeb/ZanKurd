@@ -1,11 +1,11 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
-if($userType == 'admin'){
-   header('location: logout.php');
+if ($userType == 'admin') {
+  header('location: logout.php');
 }
 ?>
 
@@ -13,64 +13,70 @@ if($userType == 'admin'){
 <html lang="ckb" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>زانیارییەکانی نووسەر</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/header_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>زانیارییەکانی نووسەر</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/header_style.css">
 
 </head>
 
 <body>
-<body>
 
-  <?php
-    include 'header.php';
+  <body>
+
+    <?php
+    require_once 'header.php';
     $selected_id = $_GET['id'];
-    
-    $select_author = mysqli_query($conn, "SELECT * FROM authors WHERE id = $selected_id") or die ("Failed to select book");
+
+    $select_author = mysqli_query($conn, "SELECT * FROM authors WHERE id = $selected_id") or die("Failed to select book");
 
     $author_details = mysqli_fetch_assoc($select_author);
-  ?>
+    ?>
 
-<!-- using same style of book details -->
-  <section class="book_details">
-    <div class="book_details-container">
-      <div class="book_details-image">
-        <?php echo '<img src="admin/authors_images/' . $author_details['image'] . '" alt="">' ?>
-      </div>
-      <div class="book_details-text">
-        <h1><?php echo $author_details['name'] ?></h1>
-        <p><strong>دەربارە:</strong> <?php echo $author_details['description'] ?></p>
-        <!-- <a href="text.pdf" class="primary-button">خوێندنەوە</a>
+    <!-- using same style of book details -->
+    <section class="book_details">
+      <div class="book_details-container">
+        <div class="book_details-image">
+          <?php echo '<img src="admin/authors_images/' . $author_details['image'] . '" alt="">' ?>
+        </div>
+        <div class="book_details-text">
+          <h1><?php echo $author_details['name'] ?></h1>
+          <p><strong>دەربارە:</strong> <?php echo $author_details['description'] ?></p>
+          <!-- <a href="text.pdf" class="primary-button">خوێندنەوە</a>
         <a href="#" class="download-button">دابەزاندن</a> -->
-        <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
+          <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <h1>کتێبەکانی نووسەر</h1>
+    <h1>کتێبەکانی نووسەر</h1>
 
-  
-  <?php
-  // showing all books of the author
-  include 'template.php';
-  showAllBoxes('books',
-  "SELECT * FROM `books`
+
+    <?php
+    // showing all books of the author
+    require_once 'template.php';
+    showAllBoxes(
+      'books',
+      "SELECT * FROM `books`
   WHERE
   author = (
         SELECT name FROM authors
         WHERE id = $selected_id)",
-        "book_details.php");
-  ?>
+      "book_details.php"
+    );
+    ?>
 
+    <?php require_once 'footer.php'; ?>
 
+    <!-- custom js link-->
+    <script>
+      var userType = <?php echo json_encode($userType); ?>;
+    </script>
+    <script src="js/scripts.js"></script>
+    <!-- font awesome link-->
+    <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 
-  <!-- custom js link-->
-  <script src="js/scripts.js"></script>
-  <!-- font awesome link-->
-  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
-
-</body>
+  </body>
 
 </html>

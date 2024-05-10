@@ -111,7 +111,7 @@ authForm.forEach((form) => {
 // }
 
 // User box functionality
-if (document.getElementById("user-btn") != null)
+if (userType != null && document.getElementById("user-btn") != null)
   document.getElementById("user-btn").addEventListener("click", function () {
     document.getElementById("user-box").classList.toggle("show");
     document.getElementById("search-container").classList.remove("show");

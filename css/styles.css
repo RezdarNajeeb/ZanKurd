@@ -266,16 +266,30 @@ section {
 /* home page style */
 .home {
   display: flex;
-  flex-direction: column;
-  margin: 0 auto;
   justify-content: center;
   align-items: center;
+  height: 80vh;
+}
+
+.home-container {
+  text-align: center;
+}
+
+.home-text {
+  max-width: 50rem;
+  margin: 0 auto;
 }
 
 .home h1 {
   font-size: 3.2rem;
   margin-bottom: 1.6rem;
 }
+
+.home p {
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
 
 /* All Books style */
 .box-container {

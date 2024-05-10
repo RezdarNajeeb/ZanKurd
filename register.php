@@ -1,12 +1,15 @@
 <?php
-include 'config.php';
-// session_start();
+require_once 'config.php';
 
+session_start();
 
-// if (isset($_SESSION['user_type'])) {
-//    echo '<script>var userType = "' . $_SESSION['user_type'] . '";</script>';
-// }
-
+if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') {
+   header('location: admin/dashboard.php');
+   exit();
+} elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user') {
+   header('location: index.php');
+   exit();
+}
 
 
 if (isset($_POST['submit'])) {

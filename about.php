@@ -1,11 +1,11 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
-if($userType == 'admin'){
-   header('location: logout.php');
+if ($userType == 'admin') {
+  header('location: logout.php');
 }
 ?>
 
@@ -28,27 +28,27 @@ if($userType == 'admin'){
 
 
   <?php
-  include 'header.php';
+  require_once 'header.php';
   ?>
 
   <!-- using the same style of adding books -->
-<section class="add-books">
+  <section class="add-books">
     <h1>پەیوەندیکردن</h1>
     <div class="form-container">
-    <form action="about.php" method="POST" enctype="multipart/form-data">
+      <form action="about.php" method="POST" enctype="multipart/form-data">
 
 
-      <label for="name">ناو</label>
-      <input type="text" name="name" class="field" required>
+        <label for="name">ناو</label>
+        <input type="text" name="name" class="field" required>
 
-      <label for="email">ئیمەیڵ</label>
-      <input type="email" name="email" class="field" required>
+        <label for="email">ئیمەیڵ</label>
+        <input type="email" name="email" class="field" required>
 
-      <label for="description">نامە</label>
-      <input type="text" name="message" class="field" required>
+        <label for="description">نامە</label>
+        <input type="text" name="message" class="field" required>
 
-      <button type="submit" name="send">ناردن</button>
-    </form>
+        <button type="submit" name="send">ناردن</button>
+      </form>
     </div>
   </section>
 
@@ -58,19 +58,23 @@ if($userType == 'admin'){
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = $_POST['email'];
     $category = mysqli_real_escape_string($conn, $_POST['message']);
- 
+
     mysqli_query($conn, "INSERT INTO `messages`(name, email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
   }
   ?>
 
-
-
-</body>
-
+  <!-- footer section -->
+  <?php require_once 'footer.php'; ?>
 
   <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script src="js/scripts.js"></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+
+</body>
+
 </html>
