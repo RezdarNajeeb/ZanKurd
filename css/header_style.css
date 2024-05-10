@@ -158,6 +158,7 @@ nav ul li a:hover {
   padding-top: 2.24rem;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   transition: clip-path 0.3s;
+  z-index: 1000;
 }
 
 .dropdown-menu-container .dropdown-menu {

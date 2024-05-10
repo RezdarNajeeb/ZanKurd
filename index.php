@@ -63,9 +63,17 @@ if ($userType == 'admin') {
   </section>
   <!--  home section ends -->
 
+  
+  
   <?php require_once 'footer.php'; ?>
+  
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- swiper js cdn link-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <!-- custom js file -->
+  <script src='js/scripts.js' defer></script>
   <script>
     var userType = <?php echo json_encode($userType); ?>;
 
@@ -73,8 +81,10 @@ if ($userType == 'admin') {
     var swiper = new Swiper(".books-slider", {
       loop: true,
       centeredSlides: true,
+      spaceBetween: 10,
       autoplay: {
-        delay: 9500,
+        reverseDirection: true,
+        delay: 4500,
         disableOnInteraction: false,
       },
       breakpoints: {
@@ -90,11 +100,6 @@ if ($userType == 'admin') {
       },
     });
   </script>
-  <script src='js/scripts.js' defer></script>
-  <!-- font awesome link-->
-  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
-  <!-- swiper js cdn link-->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
 </html>

@@ -280,17 +280,20 @@ section {
 }
 
 .home .row .content {
-  flex: 1 1 42rem; /*search*/
+  flex: 1 1 42rem;
 }
 
 .home .row .books-slider {
-  flex: 1 1 42rem; /*search*/
+  flex: 1 1 42rem;
   text-align: center;
   margin-top: 2rem;
 }
 
 .home .row .books-slider a img {
-  height: 25rem;
+  width: 100%;
+  height: 30rem;
+  border-radius: 0.8rem;
+  transition: transform 0.3s ease;
 }
 
 .home .row .books-slider a:hover img {
@@ -299,16 +302,16 @@ section {
 
 .home .row .books-slider .stand {
   width: 100%;
-  margin-top: -2rem;
+  margin-top: -5rem;
 }
 
 .home .row .content h3 {
-  color: var(--black);
+  color: var(--text-color);
   font-size: 4.5rem;
 }
 
 .home .row .content p {
-  color: var(--light-color);
+  color: var(--text-color);
   font-size: 1.4rem;
   line-height: 2;
   padding: 1rem 0;
@@ -326,7 +329,7 @@ section {
 }
 
 .box {
-  min-height: 36.8rem;
+  height: 36.8rem;
   border-radius: 0.8rem;
   padding: 0.48rem;
   box-shadow: var(--box-shadow);
