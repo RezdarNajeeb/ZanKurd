@@ -26,14 +26,13 @@
 
     <div class="part">
       <h3>فۆڵۆومان بکە</h3>
-      <a href="#"> <i class="fab fa-facebook-f"></i> فەیسبووک </a>
-      <a href="#"> <i class="fab fa-x"></i> ئێکس </a>
-      <a href="#"> <i class="fab fa-instagram"></i> ئینستاگرام </a>
-      <a href="#"> <i class="fab fa-linkedin"></i> لینکدئین </a>
+      <a href="https://www.facebook.com/rez.dar.10?mibextid=ZbWKwL"> <i class="fab fa-facebook-f"></i> فەیسبووک </a>
+      <a href="https://www.instagram.com/_rezdar_?igsh=bjFxcWJ6aThkMWp2"> <i class="fab fa-instagram"></i> ئینستاگرام </a>
+      <a href="https://www.linkedin.com/in/rezdar-n-obaed-52b794241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"> <i class="fab fa-linkedin"></i> لینکدئین </a>
     </div>
 
   </div>
 
-  <p class="credit">@<?php echo date('Y'); ?>  دروستکراوە لە لایەن <span>ڕێزدار نەجیب عوبەید</span> </p>
+  <p class="credit">@<?php echo date('Y'); ?> دروستکراوە لە لایەن <span>ڕێزدار نەجیب عوبەید</span> </p>
 
 </section>

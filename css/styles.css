@@ -264,30 +264,54 @@ section {
 }
 
 /* home page style */
+
 .home {
+  background: url(../assets/images/banner-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .row {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 80vh;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-.home-container {
+.home .row .content {
+  flex: 1 1 42rem; /*search*/
+}
+
+.home .row .books-slider {
+  flex: 1 1 42rem; /*search*/
   text-align: center;
+  margin-top: 2rem;
 }
 
-.home-text {
-  max-width: 50rem;
-  margin: 0 auto;
+.home .row .books-slider a img {
+  height: 25rem;
 }
 
-.home h1 {
-  font-size: 3.2rem;
-  margin-bottom: 1.6rem;
+.home .row .books-slider a:hover img {
+  transform: scale(0.9);
 }
 
-.home p {
-  font-size: 1.6rem;
-  color: var(--text-color);
+.home .row .books-slider .stand {
+  width: 100%;
+  margin-top: -2rem;
+}
+
+.home .row .content h3 {
+  color: var(--black);
+  font-size: 4.5rem;
+}
+
+.home .row .content p {
+  color: var(--light-color);
+  font-size: 1.4rem;
+  line-height: 2;
+  padding: 1rem 0;
 }
 
 

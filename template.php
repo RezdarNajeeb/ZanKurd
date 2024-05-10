@@ -3,7 +3,7 @@ function showAllBoxes($tableName, $query, $relatedFile)
 { ?>
   <section class="all-books">
     <?php
-    require_once 'config.php';
+    require 'config.php';
     $select_all_rows = mysqli_query($conn, $query) or die('query failed');
 
     // Define the total number of rows

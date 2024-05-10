@@ -12,9 +12,9 @@
                 </div>
             <?php } ?>
             <div class="share">
-                <a href="#" class="fa fa-facebook-f"></a>
-                <a href="#" class="fa fa-instagram"></a>
-                <a href="#" class="fa fa-linkedin"></a>
+                <a href="https://www.facebook.com/rez.dar.10?mibextid=ZbWKwL" class="fa fa-facebook-f"></a>
+                <a href="https://www.instagram.com/_rezdar_?igsh=bjFxcWJ6aThkMWp2" class="fa fa-instagram"></a>
+                <a href="https://www.linkedin.com/in/rezdar-n-obaed-52b794241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="fa fa-linkedin"></a>
             </div>
 
         </div>
@@ -109,4 +109,3 @@
 
 <div class="loader-background" id="loader-background"></div>
 <i class="fa-solid fa-book fa-fade" id="loader-icon"></i>
-

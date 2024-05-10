@@ -16,26 +16,44 @@ if ($userType == 'admin') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>سەرەتا</title>
+  <!-- font awesome cdn-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- swiper js cdn link-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <!-- custom css style link-->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/header_style.css">
   <link rel="stylesheet" href="css/footer_styles.css">
-  <!-- font awesome cdn-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
   <?php
   require_once 'header.php';
-  ?>
-  <section class="home">
-    <div class="home-container">
-      <div class="home-text">
-        <h1>بەخێربێیت بۆ زانکورد</h1>
-        <p>لەم ماڵپەڕەدا دەتوانیت کتێبە دڵخوازەکانت باربکەیت.</p>
+  ?><!-- home section starts -->
+  <section class="home" id="home">
+    <div class="row">
+      <div class="content">
+        <h3>upto 75% off</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat,
+          quia debitis. Animi corrupti odit amet facilis perspiciatis, vero
+          nam minus sint vel exercitationem quam consequatur ipsa at incidunt
+          consectetur molestias?
+        </p>
+      </div>
+
+      <div class="swiper books-slider">
+        <div class="swiper-wrapper">
+          <a href="#" class="swiper-slide"><img src="assets/images/banner-bg.jpg" alt="" /></a>
+        </div>
+        <img src="assets/images/stand1.png" class="stand" alt="" />
       </div>
     </div>
   </section>
+  <!--  home section ends -->
 
   <?php require_once 'footer.php'; ?>
 
@@ -46,5 +64,8 @@ if ($userType == 'admin') {
   <script src='js/scripts.js' defer></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- swiper js cdn link-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
+
 </html>

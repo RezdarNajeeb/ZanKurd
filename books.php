@@ -19,6 +19,7 @@ if ($userType == 'admin') {
   <!-- custom css style link-->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/header_style.css">
+  <link rel="stylesheet" href="css/footer_styles.css">
   <!-- font awesome cdn-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

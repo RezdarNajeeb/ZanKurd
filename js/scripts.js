@@ -103,13 +103,6 @@ authForm.forEach((form) => {
   });
 });
 
-// If user is logged in or registered, replace current URL with home.php if user else dashboard.php
-// if (typeof userType != "undefined" && userType == "admin") {
-//   history.replaceState(null, "", "admin/dashboard.php");
-// } else {
-//   history.replaceState(null, "", "home.php");
-// }
-
 // User box functionality
 if (userType != null && document.getElementById("user-btn") != null)
   document.getElementById("user-btn").addEventListener("click", function () {
@@ -187,10 +180,32 @@ window.addEventListener("scroll", function () {
     scrollToTopButton.classList.remove("show");
   }
 });
-if (scrollToTopButton !== null)
+if (scrollToTopButton !== null) {
   scrollToTopButton.addEventListener("click", function () {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   });
+}
+
+// Swiper slider for books in the home page
+var swiper = new Swiper(".books-slider", {
+  loop: true,
+  centeredSlides: true,
+  autoplay: {
+    delay: 9500,
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
