@@ -2,10 +2,10 @@
 include '../config.php';
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
-if(!isset($admin_id)){
-   header('location:../login.php');
+if ($userType == 'user' || $userType == null) {
+  header('location: logout.php');
 }
 ?>
 
@@ -24,10 +24,13 @@ if(!isset($admin_id)){
 </head>
 <body>
 
+  <?php require_once 'admin_header.php'; ?>
 
-<section class="all_messages">
+  <section class="all_messages">
+    
+ 
+    <?php
 
-  <?php
 
   $select_all_rows = mysqli_query($conn, "SELECT * FROM contacts");
   $totalMessages = mysqli_num_rows($select_all_rows);
@@ -47,9 +50,31 @@ if(!isset($admin_id)){
 
 </section>
 
+<div class="container">
+<div class="status">
+      helo
+      <i class="fa fa-circle"></i>
+    </div>
+    <div class="status">
+      helo
+      <i class="fa fa-circle"></i>
+    </div>
+    <div class="status">
+      helo
+      <i class="fa fa-circle"></i>
+    </div>
+    <div class="status">
+      helo
+      <i class="fa fa-circle"></i>
+    </div>
+</div>
+
 
 
   <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script src="../js/scripts.js"></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>

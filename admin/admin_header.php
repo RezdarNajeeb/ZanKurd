@@ -33,7 +33,7 @@
                                     <a href="books.php" id="all-books-link">هەموو</a>
                                 </li>
                                 <?php
-                                include 'categories.php';
+                                include '../categories.php';
 
                                 echo '<script> document.getElementById("category").style.display = "none"; </script>';
 
@@ -97,5 +97,5 @@
     <i class="fa fa-caret-up"></i>
 </div>
 
-<div class="loader-background" id="loader-background"></div>
-<i class="fa-solid fa-book fa-fade" id="loader-icon"></i>
+<!-- <div class="loader-background" id="loader-background"></div>
+<i class="fa-solid fa-book fa-fade" id="loader-icon"></i> -->
