@@ -32,9 +32,61 @@ if ($userType == 'user' || $userType == null) {
 
 <body>
 
-  <?php require_once 'admin_header.php'; ?>
+<?php require_once 'admin_header.php'; ?>
+
 
   <h1 id="messages_heading">بەکارهێنەران</h1>
+
+
+  <!-- add admin form -->
+  <section class="add-books">
+    <h1>زیادکردنی بەڕێوبەر</h1>
+    <div class="form-container">
+      <form action="users.php" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="admin_name" class="field" placeholder="ناو بنووسە" required>
+        
+        <input type="text" name="admin_email" class="field" placeholder="ئیمەیڵ بنووسە" required>
+
+        <input type="password" name="admin_password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
+
+        <input type="password" name="admin_cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی"
+          required>
+
+        <button type="submit" name="add_admin">زیادکردن</button>
+      </form>
+    </div>
+  </section>
+
+  <?php
+  // add admin functionallity
+  if (isset($_POST['add_admin'])) {
+
+    $admin_name = mysqli_real_escape_string($conn, $_POST['admin_name']);
+    $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
+    $admin_pass = mysqli_real_escape_string($conn, $_POST['admin_password']);
+    $admin_cpass = mysqli_real_escape_string($conn, $_POST['admin_cpassword']);
+
+    $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$admin_email'") or die('query failed');
+
+    if (mysqli_num_rows($select_admins) > 0) {
+      $messages[] = 'ئەو بەڕێوبەرە دووبارەیە!';
+    } else {
+      $add_admin_query = mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$admin_name', '$admin_email', '$admin_cpass', 'admin')") or die('query failed');
+      if ($add_admin_query) {
+        $message[] = 'بەڕێوبەرەکە بە سەرکەوتوویی زیادکرا.';
+      } else {
+        $message[] = '.ناتوانیت بەڕێوبەرەکە زیاد بکەیت.';
+      }
+    }
+  }
+  ?>
+
+
+
+
+
+
   <div class="user_container">
 
     <?php
@@ -47,6 +99,11 @@ if ($userType == 'user' || $userType == null) {
     if (isset($_POST['promote'])) {
       $id = $_POST['id'];
       $update_query = mysqli_query($conn, "UPDATE users SET user_type='admin' WHERE id=$id");
+    }
+
+    if (isset($_POST['demote'])) {
+      $id = $_POST['id'];
+      $update_query = mysqli_query($conn, "UPDATE users SET user_type='user' WHERE id=$id");
     }
 
     $select_all_rows = mysqli_query($conn, "SELECT * FROM users");
@@ -85,6 +142,10 @@ if ($userType == 'user' || $userType == null) {
               // if the user is the owner and the current user is a user
               if ($adminEmail == 'owner@gmail.com' && $currentUsers['user_type'] == 'user') { ?>
                 <input type="submit" name="promote" class="button" value="بەرزکردنەوە">
+
+              <?php }
+              if ($adminEmail == 'owner@gmail.com' && ($currentUsers['email'] != 'owner@gmail.com' && $currentUsers['user_type'] == 'admin')) { ?>
+                <input type="submit" name="demote" class="demote-button" value="نزمکردنەوە">
 
               <?php }
             }

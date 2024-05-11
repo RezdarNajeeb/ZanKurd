@@ -39,13 +39,6 @@ if ($userType == 'admin') {
     <div class="form-container">
       <form action="about.php" method="POST" enctype="multipart/form-data">
 
-
-        <!-- <label for="name">ناو</label>
-        <input type="text" name="name" class="field" required>
-
-        <label for="email">ئیمەیڵ</label>
-        <input type="email" name="email" class="field" required> -->
-
         <label for="description">نامە</label>
         <input type="text" name="message" class="field" required>
 
@@ -57,12 +50,20 @@ if ($userType == 'admin') {
   <?php
   if (isset($_POST['send'])) {
 
+    if($_SESSION['user_type'] != null){
+
     $name = $_SESSION['user_name'];
     $email = $_SESSION['user_email'];
     $message = mysqli_real_escape_string($conn, $_POST['message']);
 
     mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
+            $message[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
+
+    } else{
+      $message[] = 'پێویستە سەرەتا خۆت تۆمار بکەیت.';
+    }
+
   }
   ?>
 

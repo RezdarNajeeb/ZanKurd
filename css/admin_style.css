@@ -266,15 +266,12 @@
       cursor: pointer;
     }
 
-    .delete-button {
-      background-color: #f44336;
+    .demote-button {
+      background-color: #deb918;
       color: white;
     }
 
-    .button {
-      background-color: #4CAF50;
-      color: white;
-    }
+  
 
     /* Responsive Styles */
     @media screen and (max-width: 768px) {

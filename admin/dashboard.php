@@ -2,10 +2,10 @@
 include '../config.php';
 session_start();
 
-$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
+$admin_id = $_SESSION['admin_id'];
 
-if ($userType == 'user' || $userType == null) {
-  header('location: ../logout.php');
+if (!isset($admin_id)) {
+  header('location:../login.php');
 }
 ?>
 
@@ -61,11 +61,7 @@ if ($userType == 'user' || $userType == null) {
 
   </section>
 
-
   <!-- custom js link-->
-  <script>
-    var userType = <?php echo json_encode($userType); ?>;
-  </script>
   <script src="../js/scripts.js"></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
