@@ -23,60 +23,41 @@ if ($userType == 'admin') {
 
 <body>
 
-  <body>
+  <?php
+  require_once 'header.php';
+  $selected_id = $_GET['id'];
 
-    <?php
-    require_once 'header.php';
-    $selected_id = $_GET['id'];
+  $select_author = mysqli_query($conn, "SELECT * FROM authors WHERE id = $selected_id") or die("Failed to select author");
 
-    $select_author = mysqli_query($conn, "SELECT * FROM authors WHERE id = $selected_id") or die("Failed to select book");
+  $author_details = mysqli_fetch_assoc($select_author);
+  ?>
 
-    $author_details = mysqli_fetch_assoc($select_author);
-    ?>
+  <section class="book-details">
+    <div class="book_details-container">
+      <h1 class="title"><?php echo $author_details['name']; ?></h1>
 
-    <!-- using same style of book details -->
-    <section class="book_details">
-      <div class="book_details-container">
-        <div class="book_details-image">
-          <?php echo '<img src="admin/authors_images/' . $author_details['image'] . '" alt="">' ?>
-        </div>
-        <div class="book_details-text">
-          <h1><?php echo $author_details['name'] ?></h1>
-          <p><strong>دەربارە:</strong> <?php echo $author_details['description'] ?></p>
-          <!-- <a href="text.pdf" class="primary-button">خوێندنەوە</a>
-        <a href="#" class="download-button">دابەزاندن</a> -->
-          <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
-        </div>
+      <div class="image">
+        <?php echo '<img src="admin/uploaded_image/' . $author_details['image'] . '" alt="">' ?>
       </div>
-    </section>
 
-    <h1>کتێبەکانی نووسەر</h1>
+      <div class="details">
+        <p><b>دەربارە:</b> <?php echo $author_details['description'] ?></p>
+      </div>
+    </div>
+  </section>
 
+ 
 
-    <?php
-    // showing all books of the author
-    require_once 'template.php';
-    showAllBoxes(
-      'books',
-      "SELECT * FROM `books`
-  WHERE
-  author = (
-        SELECT name FROM authors
-        WHERE id = $selected_id)",
-      "book_details.php"
-    );
-    ?>
+  <?php require_once 'footer.php'; ?>
 
-    <?php require_once 'footer.php'; ?>
+  <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
+  <script src="js/scripts.js"></script>
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 
-    <!-- custom js link-->
-    <script>
-      var userType = <?php echo json_encode($userType); ?>;
-    </script>
-    <script src="js/scripts.js"></script>
-    <!-- font awesome link-->
-    <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
-
-  </body>
+</body>
 
 </html>

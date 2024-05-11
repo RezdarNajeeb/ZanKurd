@@ -5,7 +5,7 @@ session_start();
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 if ($userType == 'user' || $userType == null) {
-  header('location: logout.php');
+  header('location: ../logout.php');
 }
 
 ?>
@@ -17,7 +17,6 @@ if ($userType == 'user' || $userType == null) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>کتێبەکان</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- custom css style link-->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/header_style.css">
