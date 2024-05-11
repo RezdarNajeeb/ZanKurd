@@ -3,7 +3,10 @@ include '../config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
+$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
+if ($userType == 'user' || $userType == null) {
+  header('location: logout.php');
 if ($userType == 'user' || $userType == null) {
   header('location: logout.php');
   exit;
@@ -36,6 +39,9 @@ if ($userType == 'user' || $userType == null) {
 
 
   <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>

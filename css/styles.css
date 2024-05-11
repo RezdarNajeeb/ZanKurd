@@ -280,17 +280,20 @@ section {
 }
 
 .home .row .content {
-  flex: 1 1 42rem; /*search*/
+  flex: 1 1 42rem;
 }
 
 .home .row .books-slider {
-  flex: 1 1 42rem; /*search*/
+  flex: 1 1 42rem;
   text-align: center;
   margin-top: 2rem;
 }
 
 .home .row .books-slider a img {
-  height: 25rem;
+  width: 100%;
+  height: 30rem;
+  border-radius: 0.8rem;
+  transition: transform 0.3s ease;
 }
 
 .home .row .books-slider a:hover img {
@@ -299,21 +302,20 @@ section {
 
 .home .row .books-slider .stand {
   width: 100%;
-  margin-top: -2rem;
+  margin-top: -5rem;
 }
 
 .home .row .content h3 {
-  color: var(--black);
+  color: var(--text-color);
   font-size: 4.5rem;
 }
 
 .home .row .content p {
-  color: var(--light-color);
+  color: var(--text-color);
   font-size: 1.4rem;
   line-height: 2;
   padding: 1rem 0;
 }
-
 
 /* All Books style */
 .box-container {
@@ -326,7 +328,7 @@ section {
 }
 
 .box {
-  min-height: 36.8rem;
+  height: 36.8rem;
   border-radius: 0.8rem;
   padding: 0.48rem;
   box-shadow: var(--box-shadow);
@@ -421,8 +423,7 @@ section {
 }
 
 .book-details-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1000px;
   background-color: white;
   border: var(--border);
   box-shadow: var(--box-shadow);
@@ -431,26 +432,41 @@ section {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto 1fr auto;
-  gap: 2rem;
-}
-
-.title {
-  grid-row: 1;
-  grid-column: 1 / span 2; /* Made the title span both columns */
+  gap: 1rem;
 }
 
 .image {
-  grid-row: 2 / span 2; /* Made the image span both rows */
+  width: 100%;
+  height: 100%;
   grid-column: 1;
+  grid-row: 1 / 3;
 }
 
-.text {
-  grid-row: 1 / span 3; /* Made the text span all three rows */
+.image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.title {
   grid-column: 2;
-  align-self: center; /* Centered the text vertically */
+  grid-row: 1;
+}
+
+.details {
+  grid-column: 2;
+  grid-row: 2 / 4;
+}
+
+.details p {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  margin-bottom: 0.8rem;
 }
 
 .buttons {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1;
   grid-row: 3;
-  grid-column: 1; /* Made the buttons align with the image */
 }
