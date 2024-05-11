@@ -3,10 +3,7 @@ include '../config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
-$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
-if ($userType == 'user' || $userType == null) {
-  header('location: logout.php');
 if ($userType == 'user' || $userType == null) {
   header('location: logout.php');
   exit;
@@ -19,7 +16,7 @@ if ($userType == 'user' || $userType == null) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نامەکان</title>
+  <title>بەکارهێنەران</title>
   <!-- custom css style link-->
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/header_style.css">
