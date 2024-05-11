@@ -29,8 +29,7 @@ if ($userType == 'user' || $userType == null) {
 
   <?php require_once 'admin_header.php'; ?>
 
-<h1 id="messages_heading">نامەکان
-</h1>
+  <h1 id="messages_heading">نامەکان</h1>
   <div class="container">
 
     <?php
@@ -56,7 +55,8 @@ if ($userType == 'user' || $userType == null) {
 
           <form action="contacts.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $currentMessages['id'] ?>">
-            <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')" value="سڕینەوە">
+            <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
+              value="سڕینەوە">
             <?php
             if ($currentMessages['state'] == 'unread') { ?>
               <input type="submit" name="read" class="read-button" value="خوێندنەوە">
