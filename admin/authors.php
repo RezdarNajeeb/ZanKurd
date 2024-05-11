@@ -5,7 +5,7 @@ session_start();
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 if ($userType == 'user' || $userType == null) {
-  header('location: logout.php');
+  header('location: ../logout.php');
 }
 ?>
 
@@ -86,7 +86,7 @@ if ($userType == 'user' || $userType == null) {
       if ($add_author_query) {
         //lera 7isabi image size u shtm nakrdwa pewist nakat
 
-        move_uploaded_file($image_tmp_name, 'authors_images/' . $image);
+        move_uploaded_file($image_tmp_name, 'uploaded_image/' . $image);
     
 
         $message[] = 'کتێبەکە بە سەرکەوتوویی زیادکرا.';

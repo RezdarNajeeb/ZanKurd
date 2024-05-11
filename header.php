@@ -24,13 +24,17 @@
         <div class="flex">
             <a href="index.php" class="logo">زانکورد</a>
 
+            <?php
+            $current_page = basename($_SERVER['PHP_SELF']);
+            ?>
+
             <nav>
                 <ul id="nav" class="nav">
                     <li>
-                        <a href="index.php">سەرەتا</a>
+                        <a href="index.php" <?php if ($current_page === 'index.php') echo 'class="active"'; ?>>سەرەتا</a>
                     </li>
                     <li>
-                        <a href="books.php" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
+                        <a href="books.php" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
 
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">
@@ -71,13 +75,14 @@
                         </div>
                     </li>
                     <li>
-                        <a href="authors.php">نووسەرەکان</a>
+                        <a href="authors.php" <?php if ($current_page === 'authors.php') echo 'class="active"'; ?>>نووسەرەکان</a>
                     </li>
                     <li>
-                        <a href="about.php">دەربارە</a>
+                        <a href="about.php" <?php if ($current_page === 'about.php') echo 'class="active"'; ?>>دەربارە</a>
                     </li>
                 </ul>
             </nav>
+
 
             <div class="search-container" id="search-container">
                 <form action="">
