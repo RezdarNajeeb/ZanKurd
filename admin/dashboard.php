@@ -4,6 +4,13 @@ session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
+$userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
+
+if ($userType == 'user' || $userType == null) {
+  header('location: ../logout.php');
+  exit;
+}
+
 if (!isset($admin_id)) {
   header('location:../login.php');
 }
@@ -25,13 +32,13 @@ if (!isset($admin_id)) {
 </head>
 
 <body>
-  <?php
-  include 'admin_header.php';
-  ?>
+  <?php include_once 'admin_header.php'; ?>
+
 
   <section class="dashboard">
     <h1 class="title">زانیاریەکان</h1>
     <div class="box-container">
+
       <div class="box">
         <?php $numberOfBooks = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM books")) or die('query failed'); ?>
         <h3><?php echo $numberOfBooks; ?></h3>
@@ -56,12 +63,40 @@ if (!isset($admin_id)) {
         <p>بەڕێوبەر</p>
       </div>
 
+      <div class="box">
+        <?php $numberOfReadMessages = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM contacts WHERE state = 'read'")) or die('query failed'); ?>
+        <h3><?php echo $numberOfReadMessages; ?></h3>
+        <p>پەیامی خوێندراوە</p>
+      </div>
+
+      <div class="box">
+        <?php $numberOfUnreadMessages = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM contacts WHERE state = 'unread'")) or die('query failed'); ?>
+        <h3><?php echo $numberOfUnreadMessages; ?></h3>
+        <p>پەیامی نەخوێندراوە</p>
+      </div>
+
+      <?php 
+      // jare tanha aw zhanaranam nusiwa ka data tedaya, agar la zhanarek hich ktebekman nabet u lera binusin error dadat, boya jare
+      // har awanam nusiwa ka ktebyan haya, dway away ktebman zyad krd la hamu jorakan hamu zhanarakan law array xwarawa zyad dakayn
+      $categories = ['ڕۆمان', 'شیعر']; 
+      foreach ($categories as $category) { ?>
+      <div class="box">
+        <?php $numberOfBooksInCategory = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM books WHERE category = '$category'")) or die('query failed'); ?>
+        <h3><?php echo $numberOfBooksInCategory; ?></h3>
+        <p><?php echo $category ?></p>
+      </div>
+        
+   <?php } ?>
+
 
     </div>
 
   </section>
 
   <!-- custom js link-->
+  <script>
+    var userType = <?php echo json_encode($userType); ?>;
+  </script>
   <script src="../js/scripts.js"></script>
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
