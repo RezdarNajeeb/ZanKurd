@@ -51,10 +51,10 @@ if ($userType == 'user' || $userType == null) {
         <div class="user_box">
           <p><?php echo $currentUsers['name'] ?></p>
           <p><?php echo $currentUsers['email'] ?></p>
-          <p><?php echo $currentUsers['message'] ?></p>
+          <p><?php echo $currentUsers['user_type'] ?></p>
 
-          <form action="contacts.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $currentMessages['id'] ?>">
+          <form action="users.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $currentUsers['id'] ?>">
             <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
               value="سڕینەوە">
             <?php
