@@ -1,4 +1,4 @@
-<?php 
+<?php
 function showAllBoxes($tableName, $query, $relatedFile)
 { ?>
   <section class="all-books">
@@ -21,7 +21,7 @@ function showAllBoxes($tableName, $query, $relatedFile)
 
     // Calculate the offset for the SQL query
     $offset = ($page - 1) * $boxesPerPage;
-    
+
     // Select boxes for the current page using LIMIT
     $select_current_boxes = mysqli_query($conn, "$query LIMIT $offset, $boxesPerPage") or die('query failed');
     ?>
@@ -33,10 +33,13 @@ function showAllBoxes($tableName, $query, $relatedFile)
         while ($currentBoxes = mysqli_fetch_assoc($select_current_boxes)) {
       ?>
           <div class='box'>
-            <div class="image"> <!-- showing the box image -->
-              <a href="<?php echo $relatedFile;?>?id=<?php echo $currentBoxes['id'] ?>">
+            <div class="image">
+              <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
                 <img src='<?php echo ((isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt="">
               </a>
+              <div class="fav">
+                <a href="#" class="fav"><i class="fa fa-heart"></i></a>
+              </div>
             </div>
 
             <div class="text">
@@ -49,9 +52,9 @@ function showAllBoxes($tableName, $query, $relatedFile)
 
             <?php if (!($tableName == 'authors')) { ?>
               <div class="buttons">
-                <?php if(!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
-                <a href="<?php echo "admin/uploaded_files/" . $currentBoxes['file']; ?>" class="reading-button" target="_blank">خوێندنەوە</a>
-                <a href="<?php echo $currentBoxes['file']; ?>" download class="download-button">دابەزاندن</a>
+                <?php if (!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
+                  <a href="<?php echo "admin/uploaded_files/" . $currentBoxes['file']; ?>" class="reading-button" target="_blank">خوێندنەوە</a>
+                  <a href="<?php echo $currentBoxes['file']; ?>" download class="download-button">دابەزاندن</a>
 
                 <?php } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
