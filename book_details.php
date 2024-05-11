@@ -15,7 +15,7 @@ if ($userType == 'admin') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Details</title>
+  <title>وردەکاری کتێب</title>
   <!-- custom css style link-->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/header_style.css">
@@ -37,24 +37,23 @@ if ($userType == 'admin') {
 
   <section class="book-details">
     <div class="book-details-container">
+
       <h1 class="title"><?php echo $book_details['name'] ?></h1>
 
       <div class="image">
         <?php echo '<img src="admin/uploaded_image/' . $book_details['image'] . '" alt="">' ?>
       </div>
 
-      <div class="text">
-        <p><strong>نووسەر:</strong> <?php echo $book_details['author'] ?></p>
-        <p><strong>بەش:</strong> <?php echo $book_details['category'] ?></p>
-        <p><strong>پێناسە:</strong> <?php echo $book_details['description'] ?></p>
+      <div class="details">
+        <p><b>نووسەر:</b> <?php echo $book_details['author'] ?></p>
+        <p><b>بەش:</b> <?php echo $book_details['category'] ?></p>
+        <p><b>پێناسە:</b> <?php echo $book_details['description'] ?></p>
       </div>
 
       <div class="buttons">
-        <a href="text.pdf" class="primary-button">خوێندنەوە</a>
-        <a href="#" class="download-button">دابەزاندن</a>
-        <a href="javascript:void(0);" onclick="history.back()" class="cancel-button">گەڕانەوە</a>
+        <a href="<?php echo "admin/uploaded_files/" . $book_details['file']; ?>" class="primary-button" target="_blank">خوێندنەوە</a>
+        <a href="<?php echo $book_details['file']; ?>" download class="download-button">دابەزاندن</a>
       </div>
-
     </div>
   </section>
 

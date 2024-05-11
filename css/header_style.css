@@ -8,6 +8,8 @@
   scroll-behavior: smooth;
 }
 
+
+
 .flex {
   display: flex;
   flex-direction: row-reverse;
@@ -19,7 +21,7 @@
 
 .header-1 {
   background-color: var(--primary-color);
-  padding: .48rem 0;
+  padding: 0.48rem 0;
 }
 
 .header-1 .flex {

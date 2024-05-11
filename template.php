@@ -50,8 +50,8 @@ function showAllBoxes($tableName, $query, $relatedFile)
             <?php if (!($tableName == 'authors')) { ?>
               <div class="buttons">
                 <?php if(!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
-                <a href="<?php echo $currentBoxes['file']; ?>" class="reading-button">خوێندنەوە</a>
-                <a href="" download=<?php echo $currentBoxes['file']; ?> class="download-button">دابەزاندن</a>
+                <a href="<?php echo "admin/uploaded_files/" . $currentBoxes['file']; ?>" class="reading-button" target="_blank">خوێندنەوە</a>
+                <a href="<?php echo $currentBoxes['file']; ?>" download class="download-button">دابەزاندن</a>
 
                 <?php } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') { ?>
                   <a href="<?php echo $tableName . '.php?update=' . $currentBoxes['id']; ?>" class="edit-button">دەستکاریکردن</a>
