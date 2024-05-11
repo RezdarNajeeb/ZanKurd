@@ -118,6 +118,7 @@ nav ul {
   display: flex;
   justify-content: space-between;
   column-gap: 3.2rem;
+  z-index: 1000;
 }
 
 nav ul li {

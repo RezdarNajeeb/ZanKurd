@@ -57,8 +57,8 @@ if ($userType == 'admin') {
   <?php
   if (isset($_POST['send'])) {
 
-    $name = $_SESSION['name'];
-    $email = $_SESSION['email'];
+    $name = $_SESSION['user_name'];
+    $email = $_SESSION['user_email'];
     $message = mysqli_real_escape_string($conn, $_POST['message']);
 
     mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
