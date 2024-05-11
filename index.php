@@ -52,7 +52,7 @@ if ($userType == 'admin') {
             while ($book = mysqli_fetch_assoc($randomBooks)) {
           ?>
               <a href="book_details.php?id=<?php echo $book['id']; ?>" class="swiper-slide">
-                <img src="admin/uploaded_image/<?php echo $book['image']; ?>" alt="" />
+                <img src="assets/images/book.jpeg" alt="" />
               </a>
           <?php }
           } ?>

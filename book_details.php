@@ -37,7 +37,6 @@ if ($userType == 'admin') {
 
   <section class="book-details">
     <div class="book-details-container">
-
       <h1 class="title"><?php echo $book_details['name'] ?></h1>
 
       <div class="image">

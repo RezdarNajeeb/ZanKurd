@@ -19,13 +19,18 @@
     <div class="header-2">
         <div class="flex">
             <a href="dashboard.php" class="logo">بەڕێوەبردن</a>
+
+            <?php
+            $current_page = basename($_SERVER['PHP_SELF']);
+            ?>
+
             <nav>
                 <ul id="nav" class="nav">
                     <li>
-                        <a href="dashboard.php">زانیاریەکان</a>
+                        <a href="dashboard.php" <?php if ($current_page === 'dashboard.php') echo 'class="active"' ?>>زانیاریەکان</a>
                     </li>
                     <li>
-                        <a href="books.php" id="dropdown-link">کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
+                        <a href="books.php" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
 
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">
@@ -65,13 +70,13 @@
                         </div>
                     </li>
                     <li>
-                        <a href="authors.php">نووسەرەکان</a>
+                        <a href="authors.php" <?php if ($current_page === 'authors.php') echo 'class="active"' ?>>نووسەرەکان</a>
                     </li>
                     <li>
-                        <a href="contacts.php">نامەکان</a>
+                        <a href="contacts.php" <?php if ($current_page === 'contacts.php') echo 'class="active"' ?>>نامەکان</a>
                     </li>
                     <li>
-                        <a href="users.php">بەکارهێنەرەکان</a>
+                        <a href="users.php" <?php if ($current_page === 'users.php') echo 'class="active"' ?>>بەکارهێنەرەکان</a>
                     </li>
                 </ul>
             </nav>

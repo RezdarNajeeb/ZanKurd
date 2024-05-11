@@ -32,8 +32,8 @@ if ($userType == 'admin') {
   $author_details = mysqli_fetch_assoc($select_author);
   ?>
 
-  <section class="book-details">
-    <div class="book_details-container">
+  <section class="author-details">
+    <div class="author-details-container">
       <h1 class="title"><?php echo $author_details['name']; ?></h1>
 
       <div class="image">
@@ -46,7 +46,22 @@ if ($userType == 'admin') {
     </div>
   </section>
 
- 
+  <h3 class="title">کتێبەکانی نووسەر</h3>
+
+
+  <?php
+  // showing all books of the author
+  require_once 'template.php';
+  showAllBoxes(
+    'books',
+    "SELECT * FROM `books`
+    WHERE
+    author = (
+          SELECT name FROM authors
+          WHERE id = $selected_id)",
+    "book_details.php"
+  );
+  ?>
 
   <?php require_once 'footer.php'; ?>
 
