@@ -54,7 +54,10 @@ if ($userType == 'user' || $userType == null) {
           <p><?php echo $currentMessages['message'] ?></p>
 
           <form action="contacts.php" method="POST">
+
+            <!-- getting the id of the message -->
             <input type="hidden" name="id" value="<?php echo $currentMessages['id'] ?>">
+            
             <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
               value="سڕینەوە">
             <?php

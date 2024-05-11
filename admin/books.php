@@ -54,7 +54,6 @@ if ($userType == 'user' || $userType == null) {
         <label for="author_name">نووسەر</label>
         <input type="text" name="author_name" class="field" required>
 
-
         <label for="category">چەشن</label>
         <?php include '../categories.php' ?>
 
@@ -93,8 +92,12 @@ if ($userType == 'user' || $userType == null) {
     VALUES('$name', '$author', '$category', '$image', '$file')") or die('query failed');
 
       if ($add_book_query) {
-        //lera 7isabi image size u shtm nakrdwa pewist nakat
 
+        //adding author
+        mysqli_query($conn, "INSERT INTO `authors`(name)
+      VALUES('$author')") or die('query failed');
+
+        //lera 7isabi image size u shtm nakrdwa pewist nakat
         move_uploaded_file($image_tmp_name, 'uploaded_image/' . $image);
         move_uploaded_file($file_tmp_name, 'uploaded_files/' . $file);
 
@@ -147,7 +150,7 @@ if ($userType == 'user' || $userType == null) {
       $update_query = mysqli_query($conn, "SELECT * FROM `books` WHERE id = '$update_id'") or die('query failed');
       if (mysqli_num_rows($update_query) > 0) {
         while ($fetch_update = mysqli_fetch_assoc($update_query)) {
-    ?>
+          ?>
           <form action="books.php" method="post" enctype="multipart/form-data">
 
             <input type="hidden" name="update_book_id" value="<?php echo $fetch_update['id']; ?>">
@@ -160,10 +163,12 @@ if ($userType == 'user' || $userType == null) {
             <img src="uploaded_image/<?php echo $fetch_update['image']; ?>" alt="">
 
             <label for="update_book_name">ناوی کتێب</label>
-            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="ناوی کتێب">
+            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="box" required
+              placeholder="ناوی کتێب">
 
             <label for="author">نووسەر</label>
-            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="box" required placeholder="ناوی نووسەر">
+            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="box" required
+              placeholder="ناوی نووسەر">
 
             <label for="category">چەشن</label>
             <?php include '../categories.php' ?>
@@ -179,7 +184,7 @@ if ($userType == 'user' || $userType == null) {
             <input type="submit" value="پاشەکەوتکردن" name="update_book" class="btn">
             <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="option-btn">
           </form>
-    <?php
+          <?php
         }
       }
     } else {

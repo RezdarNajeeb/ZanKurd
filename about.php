@@ -40,11 +40,11 @@ if ($userType == 'admin') {
       <form action="about.php" method="POST" enctype="multipart/form-data">
 
 
-        <label for="name">ناو</label>
+        <!-- <label for="name">ناو</label>
         <input type="text" name="name" class="field" required>
 
         <label for="email">ئیمەیڵ</label>
-        <input type="email" name="email" class="field" required>
+        <input type="email" name="email" class="field" required> -->
 
         <label for="description">نامە</label>
         <input type="text" name="message" class="field" required>
@@ -57,11 +57,11 @@ if ($userType == 'admin') {
   <?php
   if (isset($_POST['send'])) {
 
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = $_POST['email'];
+    $name = $_SESSION['name'];
+    $email = $_SESSION['email'];
     $message = mysqli_real_escape_string($conn, $_POST['message']);
 
-    mysqli_query($conn, "INSERT INTO `contacts`(name, email, message)
+    mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
   }
   ?>
