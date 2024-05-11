@@ -75,7 +75,7 @@ if ($userType == 'user' || $userType == null) {
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
 
-    $select_author_name = mysqli_query($conn, "SELECT name FROM `books` WHERE name = '$name'") or die('query failed');
+    $select_author_name = mysqli_query($conn, "SELECT name FROM `authors` WHERE name = '$name'") or die('query failed');
 
     if (mysqli_num_rows($select_author_name) > 0) {
       $message[] = 'نووسەرەکە پێشتر زیادکراوە.';

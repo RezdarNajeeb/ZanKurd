@@ -49,12 +49,15 @@ if ($userType == 'user' || $userType == null) {
       while ($currentMessages = mysqli_fetch_assoc($select_all_rows)) {
         ?>
         <div class="message_box">
-          <h1><?php echo $currentMessages['name'] ?></h1>
-          <h2><?php echo $currentMessages['email'] ?></h2>
+          <h1><?php echo $currentMessages['user_name'] ?></h1>
+          <h2><?php echo $currentMessages['user_email'] ?></h2>
           <p><?php echo $currentMessages['message'] ?></p>
 
           <form action="contacts.php" method="POST">
+
+            <!-- getting the id of the message -->
             <input type="hidden" name="id" value="<?php echo $currentMessages['id'] ?>">
+
             <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
               value="سڕینەوە">
             <?php

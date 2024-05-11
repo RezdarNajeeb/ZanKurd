@@ -29,6 +29,55 @@ if ($userType == 'user' || $userType == null) {
 
   <?php require_once 'admin_header.php'; ?>
 
+  <h1 id="messages_heading">بەکارهێنەران</h1>
+  <div class="container">
+
+    <?php
+    if (isset($_POST['delete'])) {
+      $id = $_POST['id'];
+      $delete_query = mysqli_query($conn, "DELETE FROM contacts WHERE id=$id");
+    }
+
+    if (isset($_POST['read'])) {
+      $id = $_POST['id'];
+      $update_query = mysqli_query($conn, "UPDATE contacts SET state='read' WHERE id=$id");
+    }
+
+    $select_all_rows = mysqli_query($conn, "SELECT * FROM users");
+    $totalUsers = mysqli_num_rows($select_all_rows);
+    if ($totalUsers > 0) {
+      while ($currentUsers = mysqli_fetch_assoc($select_all_rows)) {
+        ?>
+        <div class="user_box">
+          <p><?php echo $currentUsers['name'] ?></p>
+          <p><?php echo $currentUsers['email'] ?></p>
+          <p><?php echo $currentUsers['user_type'] ?></p>
+
+          <form action="users.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $currentUsers['id'] ?>">
+            <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
+              value="سڕینەوە">
+            <?php
+            if ($currentUsers['state'] == 'unread') { ?>
+              <input type="submit" name="read" class="read-button" value="خوێندنەوە">
+              <?php
+              echo '<i class="fa fa-circle" style="color: red;"></i>';
+
+            } else if ($currentMessages['state'] == 'read') {
+              echo '<i class="fa fa-circle" style="color: green;"></i>';
+            }
+            ?>
+          </form>
+
+        </div>
+        <?php
+      }
+    }
+    ;
+    ?>
+
+  </div>
+
 
 
 
