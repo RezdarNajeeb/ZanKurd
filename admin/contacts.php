@@ -30,7 +30,7 @@ if ($userType == 'user' || $userType == null) {
   <?php require_once 'admin_header.php'; ?>
 
   <h1 id="messages_heading">نامەکان</h1>
-  <div class="container">
+  <div class="message_container">
 
     <?php
     if (isset($_POST['delete'])) {
@@ -62,7 +62,7 @@ if ($userType == 'user' || $userType == null) {
               value="سڕینەوە">
             <?php
             if ($currentMessages['state'] == 'unread') { ?>
-              <input type="submit" name="read" class="read-button" value="خوێندنەوە">
+              <input type="submit" name="read" class="button" value="خوێندنەوە">
               <?php
               echo '<i class="fa fa-circle" style="color: red;"></i>';
 

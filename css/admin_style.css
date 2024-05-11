@@ -137,7 +137,7 @@
   padding: 2rem;
 }
 
-.container {
+.message_container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -202,7 +202,7 @@
   border-radius: 4px;
 }
 
-.read-button {
+.button {
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -217,3 +217,74 @@
 }
 
 
+
+
+
+.user_container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 20px;
+    }
+
+    .user_box {
+      background-color: #f2f2f2;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .user_box h1 {
+      margin: 10px 0;
+      font-size: 2rem;
+    }
+    .user_box h2 {
+      margin: 10px 0;
+      font-size: 1.7rem;
+      color: #272727;
+      
+    }
+    .user_box h3 {
+      margin: 10px 0;
+      font-size: 1.5rem;
+      color: #323232;
+
+    }
+
+    .user_box form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+
+    .user_box input[type="submit"] {
+      padding: 8px 16px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-button {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 768px) {
+      .user_container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .user_container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }

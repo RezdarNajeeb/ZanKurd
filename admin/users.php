@@ -3,12 +3,17 @@ include '../config.php';
 session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
+$adminEmail = isset($_SESSION['admin_email']) ? $_SESSION['admin_email'] : null;
+
 
 if ($userType == 'user' || $userType == null) {
   header('location: ../logout.php');
   exit;
 }
 ?>
+<script>
+  alert('<?php echo $user_email; ?>');
+</script>
 
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
@@ -30,17 +35,18 @@ if ($userType == 'user' || $userType == null) {
   <?php require_once 'admin_header.php'; ?>
 
   <h1 id="messages_heading">بەکارهێنەران</h1>
-  <div class="container">
+  <div class="user_container">
 
     <?php
+
     if (isset($_POST['delete'])) {
       $id = $_POST['id'];
-      $delete_query = mysqli_query($conn, "DELETE FROM contacts WHERE id=$id");
+      $delete_query = mysqli_query($conn, "DELETE FROM users WHERE id=$id");
     }
 
-    if (isset($_POST['read'])) {
+    if (isset($_POST['promote'])) {
       $id = $_POST['id'];
-      $update_query = mysqli_query($conn, "UPDATE contacts SET state='read' WHERE id=$id");
+      $update_query = mysqli_query($conn, "UPDATE users SET user_type='admin' WHERE id=$id");
     }
 
     $select_all_rows = mysqli_query($conn, "SELECT * FROM users");
@@ -49,22 +55,38 @@ if ($userType == 'user' || $userType == null) {
       while ($currentUsers = mysqli_fetch_assoc($select_all_rows)) {
         ?>
         <div class="user_box">
-          <p><?php echo $currentUsers['name'] ?></p>
-          <p><?php echo $currentUsers['email'] ?></p>
-          <p><?php echo $currentUsers['user_type'] ?></p>
+          <h2><?php echo $currentUsers['name'] ?></h2>
+          <h3><?php echo $currentUsers['email'] ?></h3>
+
+          <?php if ($currentUsers['email'] == 'owner@gmail.com') { ?>
+            <h1>Owner</h1>
+          <?php } else { ?>
+            <h1><?php echo $currentUsers['user_type'] ?></h1>
+          <?php } ?>
 
           <form action="users.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $currentUsers['id'] ?>">
-            <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
-              value="سڕینەوە">
-            <?php
-            if ($currentUsers['state'] == 'unread') { ?>
-              <input type="submit" name="read" class="read-button" value="خوێندنەوە">
-              <?php
-              echo '<i class="fa fa-circle" style="color: red;"></i>';
 
-            } else if ($currentMessages['state'] == 'read') {
-              echo '<i class="fa fa-circle" style="color: green;"></i>';
+            <?php
+
+            //user = the user which logged in
+            //current user = the user which is in the loop
+        
+            // if the user is the owner or the user is an admin and the current user is a user
+            if ($adminEmail == 'owner@gmail.com' || ($userType == 'admin' && $currentUsers['user_type'] == 'user')) {
+
+              if ($currentUsers['email'] != 'owner@gmail.com') { ?>
+
+                <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
+                  value="سڕینەوە">
+
+              <?php }
+
+              // if the user is the owner and the current user is a user
+              if ($adminEmail == 'owner@gmail.com' && $currentUsers['user_type'] == 'user') { ?>
+                <input type="submit" name="promote" class="button" value="بەرزکردنەوە">
+
+              <?php }
             }
             ?>
           </form>
