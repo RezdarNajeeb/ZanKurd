@@ -28,17 +28,6 @@ if ($userType == 'user' || $userType == null) {
 <body>
   <?php
 
-  if (isset($messages)) {
-    foreach ($messages as $message) {
-      echo '
-        <div class="message">
-           <span>' . $message . '</span>
-           <i class="fa fa-times" onclick="this.parentElement.remove();"></i>
-        </div>
-        ';
-    }
-  }
-
   include 'admin_header.php';
   ?>
 

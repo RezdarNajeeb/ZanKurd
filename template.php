@@ -74,6 +74,7 @@ function showAllBoxes($tableName, $query, $relatedFile)
               <?php } ?>
             </div>
 
+
             <div class="text">
               <p><?php echo $currentBoxes['name'] ?></p>
               <?php if ($tableName == 'books') { ?>

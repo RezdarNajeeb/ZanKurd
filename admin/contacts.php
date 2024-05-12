@@ -35,12 +35,22 @@ if ($userType == 'user' || $userType == null) {
     <?php
     if (isset($_POST['delete'])) {
       $id = $_POST['id'];
-      $delete_query = mysqli_query($conn, "DELETE FROM contacts WHERE id=$id");
+      $delete_message_query = mysqli_query($conn, "DELETE FROM contacts WHERE id=$id");
+      if ($delete_message_query) {
+        $message[] = 'پەیامەکە سڕایەوە.';
+      } else {
+        $message[] =  'ناتوانیت پەیامەکە بسڕیتەوە';
+      }
     }
 
     if (isset($_POST['read'])) {
       $id = $_POST['id'];
-      $update_query = mysqli_query($conn, "UPDATE contacts SET state='read' WHERE id=$id");
+      $update_state_query = mysqli_query($conn, "UPDATE contacts SET state='read' WHERE id=$id");
+      if ($delete_state_query) {
+        $message[] = 'پەیامەکە زیادکرا بۆ خوێندراوەکان.';
+      } else {
+        $message[] =  'ناتوانیت پەیامەکە زیاد بکەیت بۆ خوێندراوەکان.';
+      }
     }
 
     $select_all_rows = mysqli_query($conn, "SELECT * FROM contacts");
@@ -62,7 +72,7 @@ if ($userType == 'user' || $userType == null) {
               value="سڕینەوە">
             <?php
             if ($currentMessages['state'] == 'unread') { ?>
-              <input type="submit" name="read" class="button" value="خوێندنەوە">
+              <input type="submit" name="read" class="read-message-button" value="خوێندنەوە">
               <?php
               echo '<i class="fa fa-circle" style="color: red;"></i>';
 
@@ -75,6 +85,9 @@ if ($userType == 'user' || $userType == null) {
         </div>
         <?php
       }
+    }
+    else{
+      $message[] = 'هیچ پەیامێک نییە.';
     }
     ;
     ?>

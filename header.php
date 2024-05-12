@@ -115,3 +115,16 @@
 
 <div class="loader-background" id="loader-background"></div>
 <i class="fa-solid fa-book fa-fade" id="loader-icon"></i>
+
+<?php 
+ if (isset($messages)) {
+    foreach ($messages as $message) {
+      echo '
+        <div class="message">
+           <span>' . $message . '</span>
+           <i class="fa fa-times" onclick="this.parentElement.remove();"></i>
+        </div>
+        ';
+    }
+  }
+?>

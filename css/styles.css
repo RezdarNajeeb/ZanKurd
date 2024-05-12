@@ -109,6 +109,9 @@ section {
 .add-button,
 .delete-button,
 .edit-button,
+.promote-button,
+.demote-button,
+.read-message-button,
 .reading-button {
   display: inline-block;
   color: white;
@@ -194,15 +197,26 @@ section {
 }
 
 /* Edit Button styles */
-.edit-button {
+.edit-button, .demote-button {
   background-color: #ffb400;
   border: 0.16rem solid #ffb400;
 }
 
-.edit-button:hover {
+.edit-button:hover, .demote-button:hover {
   color: #ffb400;
   background-color: transparent;
   border-color: #ffb400;
+}
+
+.read-message-button, .promote-button {
+  background-color: #4CAF50;
+border: 0.16rem #4CAF50;
+}
+
+.read-message-button:hover, .promote-button:hover{
+  color: #4CAF50;
+  background-color: transparent;
+  border-color: #4CAF50;
 }
 
 /* Loader style*/
