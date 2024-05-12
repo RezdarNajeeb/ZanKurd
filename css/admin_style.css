@@ -188,33 +188,7 @@
   margin-left: 10px;
 }
 
-.delete-button-admin {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-}
 
-.button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-}
 
 
 
@@ -266,10 +240,10 @@
       cursor: pointer;
     }
 
-    .demote-button {
+    /* .demote-button {
       background-color: #deb918;
       color: white;
-    }
+    } */
 
   
 

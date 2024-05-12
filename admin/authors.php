@@ -27,16 +27,7 @@ if ($userType == 'user' || $userType == null) {
 <body>
   <?php
 
-  if (isset($messages)) {
-    foreach ($messages as $message) {
-      echo '
-        <div class="message">
-           <span>' . $message . '</span>
-           <i class="fa fa-times" onclick="this.parentElement.remove();"></i>
-        </div>
-        ';
-    }
-  }
+ 
 
   include 'admin_header.php';
   ?>
@@ -89,21 +80,21 @@ if ($userType == 'user' || $userType == null) {
         move_uploaded_file($image_tmp_name, 'uploaded_image/' . $image);
     
 
-        $message[] = 'کتێبەکە بە سەرکەوتوویی زیادکرا.';
+        $message[] = 'نووسەرەکە بە سەرکەوتوویی زیادکرا.';
       } else {
-        $message[] = 'ناتوانیت کتێبەکە زیاد بکەیت.';
+        $message[] = 'ناتوانیت نووسەرەکە زیاد بکەیت.';
       }
     }
   }
   
 //showing authors
-  include '../template.php';
-  showAllBoxes('autors',"SELECT * FROM `authors`", "author_details.php");
+  require_once '../template.php';
+  showAllBoxes('authors',"SELECT * FROM `authors`", "author_details.php");
   ?>
 
 <!-- update author form -->
 <!-- using same style of edit-book-form -->
-  <section class="edit-book-form">
+  <section class="edit-author-form">
     
     <?php
     if (isset($_GET['update'])) {
@@ -136,13 +127,13 @@ if ($userType == 'user' || $userType == null) {
         }
     }
     } else {
-        echo '<script>document.querySelector(".edit-book-form").style.display = "none";</script>';
+        echo '<script>document.querySelector(".edit-author-form").style.display = "none";</script>';
     }
     ?>
 </section>
 
 <?php
-// update book functionallity
+// update author functionallity
 if (isset($_POST['update_author'])) {
     
     $update_author_id = $_POST['update_author_id'];
@@ -154,8 +145,6 @@ if (isset($_POST['update_author'])) {
 
     $update_author_description = $_POST['update_author_description'];
   
-
-  
     $update_author_query = mysqli_query($conn, "UPDATE `author`
         SET
         name = '$update_author_name',
@@ -166,8 +155,12 @@ if (isset($_POST['update_author'])) {
     if ($update_author_query) {
       move_uploaded_file($update_image_tmp_name, 'uploaded_image/' . $update_author_image);
       unlink('authors_images/' . $update_old_image);
+      $message[] = 'نووسەرەکە بە سەرکەوتووی پاشەکەوتکرا.';
     }
-    header('refresh:0;url=./books.php');
+    else {
+      $message[] = 'ناتوانیت نووسەرەکە پاشەکەوت بکەیت.';
+    }
+    header('refresh:0;url=./authors.php');
   }
 
 
@@ -180,8 +173,14 @@ if (isset($_POST['update_author'])) {
       $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
       unlink('authors_images/' . $fetch_delete_image['image']);
       
-      mysqli_query($conn, "DELETE FROM `authors` WHERE id = '$delete_id'") or die('query failed');
-      header('refresh:0;url=./books.php');
+      $delete_author_query = mysqli_query($conn, "DELETE FROM `authors` WHERE id = '$delete_id'") or die('query failed');
+      if($delete_author_query){
+        $message[] = 'نووسەرەکە سڕایەوە.';
+      }
+      else{
+        $message[] = 'ناتوانیت نووسەرەکە بسڕیتەوە.';
+      }
+      header('refresh:0;url=./authors.php');
     }
     
     

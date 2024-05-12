@@ -151,14 +151,14 @@ if ($userType == 'user' || $userType == null) {
 
               if ($currentUsers['email'] != 'owner@gmail.com') { ?>
 
-                <input type="submit" name="delete" class="delete-button-admin" onclick="return confirm('Are You Sure?')"
+                <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
                   value="سڕینەوە">
 
               <?php }
 
               // if the user is the owner and the current user is a user
               if ($isOwner&& $currentUsers['user_type'] == 'user') { ?>
-                <input type="submit" name="promote" class="button" value="بەرزکردنەوە">
+                <input type="submit" name="promote" class="promote-button" value="بەرزکردنەوە">
 
               <?php }
               if ($isOwner && ($currentUsers['email'] != 'owner@gmail.com' && $currentUsers['user_type'] == 'admin')) { ?>
@@ -180,10 +180,6 @@ if ($userType == 'user' || $userType == null) {
     ?>
 
   </div>
-
-
-
-
 
 
 

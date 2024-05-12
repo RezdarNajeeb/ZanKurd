@@ -33,14 +33,21 @@ function showAllBoxes($tableName, $query, $relatedFile)
         while ($currentBoxes = mysqli_fetch_assoc($select_current_boxes)) {
       ?>
           <div class='box'>
-            <div class="image">
-              <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
-                <img src='<?php echo ((isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt="">
-              </a>
-              <div class="fav">
-                <a href="#" class="fav"><i class="fa fa-heart"></i></a>
-              </div>
+          <div class="image">
+              <?php if (isset($_SESSION['user_type']) && ($_SESSION['user_type'] == 'user' || $_SESSION['user_type'] == null)) { ?>
+                <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
+                  <img src='<?php echo "admin/uploaded_image/" . $currentBoxes['image']; ?>' alt="">
+                </a>
+                <div class="fav">
+                  <button onclick="toggleFavorite(<?php echo $currentBoxes['id']; ?>)">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
+              <?php } else { ?>
+                <img src='<?php echo "uploaded_image/" . $currentBoxes['image']; ?>' alt="">
+              <?php } ?>
             </div>
+
 
             <div class="text">
               <p><?php echo $currentBoxes['name'] ?></p>
