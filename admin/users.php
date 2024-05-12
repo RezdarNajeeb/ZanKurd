@@ -4,6 +4,7 @@ session_start();
 
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 $adminEmail = isset($_SESSION['admin_email']) ? $_SESSION['admin_email'] : null;
+$isOwner = ($adminEmail == 'owner@gmail.com');
 
 
 if ($userType == 'user' || $userType == null) {
@@ -37,7 +38,7 @@ if ($userType == 'user' || $userType == null) {
 
   <h1 id="messages_heading">بەکارهێنەران</h1>
 
-
+<?php if($isOwner){?>
   <!-- add admin form -->
   <section class="add-books">
     <h1>زیادکردنی بەڕێوبەر</h1>
@@ -60,50 +61,66 @@ if ($userType == 'user' || $userType == null) {
 
   <?php
   // add admin functionallity
-  if (isset($_POST['add_admin'])) {
+  
 
-    $admin_name = mysqli_real_escape_string($conn, $_POST['admin_name']);
-    $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
-    $admin_pass = mysqli_real_escape_string($conn, $_POST['admin_password']);
-    $admin_cpass = mysqli_real_escape_string($conn, $_POST['admin_cpassword']);
 
-    $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$admin_email'") or die('query failed');
-
-    if (mysqli_num_rows($select_admins) > 0) {
-      $messages[] = 'ئەو بەڕێوبەرە دووبارەیە!';
-    } else {
-      $add_admin_query = mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$admin_name', '$admin_email', '$admin_cpass', 'admin')") or die('query failed');
-      if ($add_admin_query) {
-        $message[] = 'بەڕێوبەرەکە بە سەرکەوتوویی زیادکرا.';
+    if (isset($_POST['add_admin'])) {
+  
+      $admin_name = mysqli_real_escape_string($conn, $_POST['admin_name']);
+      $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
+      $admin_pass = mysqli_real_escape_string($conn, $_POST['admin_password']);
+      $admin_cpass = mysqli_real_escape_string($conn, $_POST['admin_cpassword']);
+  
+      $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$admin_email'") or die('query failed');
+  
+      if (mysqli_num_rows($select_admins) > 0) {
+        $messages[] = 'ئەو بەڕێوبەرە دووبارەیە!';
       } else {
-        $message[] = '.ناتوانیت بەڕێوبەرەکە زیاد بکەیت.';
+        $add_admin_query = mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$admin_name', '$admin_email', '$admin_cpass', 'admin')") or die('query failed');
+        if ($add_admin_query) {
+          $message[] = 'بەڕێوبەرەکە بە سەرکەوتوویی زیادکرا.';
+        } else {
+          $message[] = '.ناتوانیت بەڕێوبەرەکە زیاد بکەیت.';
+        }
       }
     }
   }
   ?>
 
-
-
-
-
-
   <div class="user_container">
 
     <?php
-
+//deleting a user or an admin
     if (isset($_POST['delete'])) {
       $id = $_POST['id'];
       $delete_query = mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+      if ($delete_query) {
+        $message[] = 'بەکارهێنەرەکە سڕایەوە.';
+      } else {
+        $message[] = 'ناتوانیت بەکار‌هێنەرەکە بسڕیتەوە.';
+      }
     }
 
+    //promoting a user to an admin
     if (isset($_POST['promote'])) {
       $id = $_POST['id'];
-      $update_query = mysqli_query($conn, "UPDATE users SET user_type='admin' WHERE id=$id");
+      $promote_update_query = mysqli_query($conn, "UPDATE users SET user_type='admin' WHERE id=$id");
+      if ($promote_update_query) {
+        $message[] = 'پلەی بەکارهێنەرەکە بەرزکرایەوە بۆ بەڕێوبەر.';
+      } else {
+        $message[] = 'ناتوانیت پلەی بەکار‌هێنەرەکە بەرزبکەیتەوە.';
+      }
     }
 
+    //demoting an admin to a user
     if (isset($_POST['demote'])) {
       $id = $_POST['id'];
-      $update_query = mysqli_query($conn, "UPDATE users SET user_type='user' WHERE id=$id");
+      $demote_update_query = mysqli_query($conn, "UPDATE users SET user_type='user' WHERE id=$id");
+      if ($demote_update_query) {
+        $message[] = 'پلەی بەڕێوبەرەکە نزمکرایەوە بۆ بەکارهێنەر.';
+      } else {
+        $message[] = 'ناتوانیت پلەی بەڕێوبەرەکە داببەزێنیت.';
+      }
     }
 
     $select_all_rows = mysqli_query($conn, "SELECT * FROM users");
@@ -134,17 +151,17 @@ if ($userType == 'user' || $userType == null) {
 
               if ($currentUsers['email'] != 'owner@gmail.com') { ?>
 
-                <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
+                <input type="submit" name="delete" class="delete-button-admin" onclick="return confirm('Are You Sure?')"
                   value="سڕینەوە">
 
               <?php }
 
               // if the user is the owner and the current user is a user
-              if ($adminEmail == 'owner@gmail.com' && $currentUsers['user_type'] == 'user') { ?>
+              if ($isOwner&& $currentUsers['user_type'] == 'user') { ?>
                 <input type="submit" name="promote" class="button" value="بەرزکردنەوە">
 
               <?php }
-              if ($adminEmail == 'owner@gmail.com' && ($currentUsers['email'] != 'owner@gmail.com' && $currentUsers['user_type'] == 'admin')) { ?>
+              if ($isOwner && ($currentUsers['email'] != 'owner@gmail.com' && $currentUsers['user_type'] == 'admin')) { ?>
                 <input type="submit" name="demote" class="demote-button" value="نزمکردنەوە">
 
               <?php }
@@ -155,6 +172,9 @@ if ($userType == 'user' || $userType == null) {
         </div>
         <?php
       }
+    }
+    else{
+      $message[] = 'هیچ بەکارهێنەرێک نییە.';
     }
     ;
     ?>
@@ -168,9 +188,6 @@ if ($userType == 'user' || $userType == null) {
 
 
   <!-- custom js link-->
-  <script>
-    var userType = <?php echo json_encode($userType); ?>;
-  </script>
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>
