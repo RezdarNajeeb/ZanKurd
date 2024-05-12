@@ -4,6 +4,7 @@ function showAllBoxes($tableName, $query, $relatedFile)
   <section class="all-books">
     <?php
     require 'config.php';
+
     $select_all_rows = mysqli_query($conn, $query) or die('query failed');
 
     // Define the total number of rows
@@ -34,12 +35,43 @@ function showAllBoxes($tableName, $query, $relatedFile)
       ?>
           <div class='box'>
             <div class="image">
-              <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
-                <img src='<?php echo ((isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') ? "uploaded_image/" : "admin/uploaded_image/") . $currentBoxes['image']; ?>' alt="">
-              </a>
-              <div class="fav">
-                <a href="#" class="fav"><i class="fa fa-heart"></i></a>
-              </div>
+              <?php if (isset($_SESSION['user_type']) && ($_SESSION['user_type'] == 'user' || $_SESSION['user_type'] == null)) { ?>
+                <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
+                  <img src='<?php echo "admin/uploaded_image/" . $currentBoxes['image']; ?>' alt="">
+                </a>
+
+                <!-- check if the book is favorited by the current user -->
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                  $userId = $_SESSION['user_id'];
+
+                  // Fetch the IDs of the favorite books for the current user
+                  $query = "SELECT book_id FROM favorites WHERE user_id = '$userId'";
+                  $result = mysqli_query($conn, $query);
+
+                  $favoriteBooks = array();
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $favoriteBooks[] = $row['book_id'];
+                  }
+
+                  // Use the $favoriteBooks array to add a CSS class to the button if the book is favorited
+                  if (in_array($currentBoxes['id'], $favoriteBooks)) {
+                    $buttonClass = 'active';
+                  } else {
+                    $buttonClass = '';
+                  }
+                }
+                ?>
+
+                <div class="fav">
+                  <button onclick="toggleFavorite(<?php echo $currentBoxes['id']; ?>)" data-book-id="<?php echo $currentBoxes['id']; ?>" class="<?php echo $buttonClass; ?>">
+                    <i class="fa fa-heart"></i>
+                  </button>
+                </div>
+
+              <?php } else { ?>
+                <img src='<?php echo "uploaded_image/" . $currentBoxes['image']; ?>' alt="">
+              <?php } ?>
             </div>
 
             <div class="text">

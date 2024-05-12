@@ -374,7 +374,7 @@ section {
   top: 20%;
 }
 
-.box .image .fav a {
+.box .image .fav button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -392,11 +392,11 @@ section {
   transition: color 0.3s;
 }
 
-.box .image .fav a:hover {
+.box .image .fav button:hover {
   color: #f44336;
 }
 
-.box .image .fav a.active {
+.box .image .fav button.active {
   color: #f44336;
 }
 

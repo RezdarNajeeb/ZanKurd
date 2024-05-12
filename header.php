@@ -92,6 +92,7 @@
             </div>
 
             <div class="icons">
+                <a href="favorites.php" class="fa fa-heart"></a>
                 <a href="#" id="search-btn" class="fa fa-search search-btn"></a>
                 <div id="user-btn" class="fa fa-user"></div>
                 <div id="menu-btn" class="fa fa-bars menu-btn"></div>

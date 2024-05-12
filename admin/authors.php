@@ -98,7 +98,7 @@ if ($userType == 'user' || $userType == null) {
   
 //showing authors
   include '../template.php';
-  showAllBoxes('autors',"SELECT * FROM `authors`", "author_details.php");
+  showAllBoxes('autors',"SELECT * FROM `authors`", "../author_details.php");
   ?>
 
 <!-- update author form -->
