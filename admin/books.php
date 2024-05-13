@@ -132,7 +132,7 @@ if ($userType == 'user' || $userType == null) {
     $query = "SELECT * FROM `books` WHERE `category`='$title'";
   }
 
-  showAllBoxes('books', $query, "book_details.php");
+  showAllBoxes('books', $query, "../book_details.php");
   ?>
 
   <!-- update book form -->

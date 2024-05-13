@@ -189,4 +189,29 @@ if (scrollToTopButton !== null) {
   });
 }
 
+// Book favorite functionality
+function toggleFavorite(bookId) {
+  $.ajax({
+    url: "toggle_favorite.php",
+    type: "POST",
+    data: {
+      book_id: bookId,
+    },
+    success: function (response) {
+      if (response === "added") {
+        $('.fav button[data-book-id="' + bookId + '"]').addClass("active");
+        alert("کتێب بۆ لیستی خۆڕایی زیاد کرا");
+      } else if (response === "removed") {
+        $('.fav button[data-book-id="' + bookId + '"]').removeClass("active");
+        alert("کتێب لە لیستی خۆڕایی لابرا");
 
+        window.location.reload();
+      } else {
+        alert("تکایە دوبارە هەوڵ بدە");
+      }
+    },
+    error: function (error) {
+      alert(error);
+    },
+  });
+}

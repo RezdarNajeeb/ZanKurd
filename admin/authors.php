@@ -88,7 +88,7 @@ if ($userType == 'user' || $userType == null) {
   
 //showing authors
   require_once '../template.php';
-  showAllBoxes('authors',"SELECT * FROM `authors`", "author_details.php");
+  showAllBoxes('authors',"SELECT * FROM `authors`", "../author_details.php");
   ?>
 
 <!-- update author form -->
