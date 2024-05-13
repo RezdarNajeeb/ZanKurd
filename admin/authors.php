@@ -29,7 +29,7 @@ if ($userType == 'user' || $userType == null) {
 
  
 
-  // include 'admin_header.php';
+  include 'admin_header.php';
   ?>
 
 <!-- add author form -->
