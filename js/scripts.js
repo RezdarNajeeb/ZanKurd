@@ -215,3 +215,26 @@ function toggleFavorite(bookId) {
     },
   });
 }
+
+// Search functionality
+$("#search-input").on("input", function () {
+  var searchQuery = $(this).val().trim();
+
+  if (searchQuery != "" && searchQuery != null) {
+    $.ajax({
+      url: "search.php",
+      type: "POST",
+      data: {
+        search_query: searchQuery,
+      },
+      success: function (response) {
+        $("#search-results").html(response);
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  } else {
+    $("#search-results").html("");
+  }
+});

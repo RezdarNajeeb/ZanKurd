@@ -32,12 +32,20 @@ if ($userType == 'user' || $userType == null) {
 </head>
 
 <body>
+
+  <?php require_once 'admin_header.php'; ?>
  
 <?php require_once 'admin_header.php'; ?>
 
 
   <h1 id="messages_heading">بەکارهێنەران</h1>
 
+  <?php if ($isOwner) { ?>
+    <!-- add admin form -->
+    <section class="add-books">
+      <h1>زیادکردنی بەڕێوبەر</h1>
+      <div class="form-container">
+        <form action="users.php" method="POST" enctype="multipart/form-data">
 <?php if($isOwner){?>
   <!-- add admin form -->
   <section class="add-books">
@@ -45,15 +53,20 @@ if ($userType == 'user' || $userType == null) {
     <div class="form-container">
       <form action="users.php" name="auth-form" id="add-admin" method="POST" enctype="multipart/form-data">
 
+          <input type="text" name="admin_name" class="field" placeholder="ناو بنووسە" required>
+
+          <input type="text" name="admin_email" class="field" placeholder="ئیمەیڵ بنووسە" required>
         <input type="text" name="admin_name" id="name" class="field" placeholder="ناو بنووسە" required>
         <span id="name-error"></span>
         
         <input type="text" name="admin_email" id="email" class="field" placeholder="ئیمەیڵ بنووسە" required>
         <span id="email-error"></span>
 
+          <input type="password" name="admin_password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
         <input type="password" name="admin_password" id="password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
         <span id="password-error"></span>
 
+          <input type="password" name="admin_cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی" required>
         <input type="password" name="admin_cpassword" id="cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی"
           required>
           <span id="cpassword-error"></span>
@@ -65,23 +78,23 @@ if ($userType == 'user' || $userType == null) {
             </div>
          </div>
 
-        <button type="submit" name="add_admin">زیادکردن</button>
-      </form>
-    </div>
-  </section>
+          <button type="submit" name="add_admin">زیادکردن</button>
+        </form>
+      </div>
+    </section>
+    <?php } ?>
 
   <?php
-
   // add admin functionallity
     if (isset($_POST['add_admin'])) {
-  
+
       $admin_name = mysqli_real_escape_string($conn, $_POST['admin_name']);
       $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
       $admin_pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['admin_password']));
       $admin_cpass = mysqli_real_escape_string($conn, hash('sha256', $_POST['admin_cpassword']));
   
       $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$admin_email'") or die('query failed');
-  
+
       if (mysqli_num_rows($select_admins) > 0) {
         $messages[] = 'ئەو بەڕێوبەرە دووبارەیە!';
       } else {
@@ -99,7 +112,7 @@ if ($userType == 'user' || $userType == null) {
   <div class="user_container">
 
     <?php
-//deleting a user or an admin
+    //deleting a user or an admin
     if (isset($_POST['delete'])) {
       $id = $_POST['id'];
       $delete_query = mysqli_query($conn, "DELETE FROM users WHERE id=$id");
@@ -136,7 +149,7 @@ if ($userType == 'user' || $userType == null) {
     $totalUsers = mysqli_num_rows($select_all_rows);
     if ($totalUsers > 0) {
       while ($currentUsers = mysqli_fetch_assoc($select_all_rows)) {
-        ?>
+    ?>
         <div class="user_box">
           <h2><?php echo $currentUsers['name'] ?></h2>
           <h3><?php echo $currentUsers['email'] ?></h3>
@@ -154,51 +167,51 @@ if ($userType == 'user' || $userType == null) {
 
             //user = the user which logged in
             //current user = the user which is in the loop
-        
+
             // if the user is the owner or the user is an admin and the current user is a user
             if ($adminEmail == 'owner@gmail.com' || ($userType == 'admin' && $currentUsers['user_type'] == 'user')) {
 
               if ($currentUsers['email'] != 'owner@gmail.com') { ?>
 
-                <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')"
-                  value="سڕینەوە">
+                <input type="submit" name="delete" class="delete-button" onclick="return confirm('Are You Sure?')" value="سڕینەوە">
 
               <?php }
 
               // if the user is the owner and the current user is a user
-              if ($isOwner&& $currentUsers['user_type'] == 'user') { ?>
+              if ($isOwner && $currentUsers['user_type'] == 'user') { ?>
                 <input type="submit" name="promote" class="promote-button" value="بەرزکردنەوە">
 
               <?php }
               if ($isOwner && ($currentUsers['email'] != 'owner@gmail.com' && $currentUsers['user_type'] == 'admin')) { ?>
                 <input type="submit" name="demote" class="demote-button" value="نزمکردنەوە">
 
-              <?php }
+            <?php }
             }
             ?>
           </form>
 
         </div>
-        <?php
+    <?php
       }
-    }
-    else{
+    } else {
       $message[] = 'هیچ بەکارهێنەرێک نییە.';
-    }
-    ;
+    };
     ?>
 
   </div>
 
 
 
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- custom js link-->
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>
   <script src="../js/scripts.js"></script>
-  <!-- font awesome link-->
-  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

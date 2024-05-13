@@ -52,7 +52,7 @@ if ($userType == 'admin') {
             while ($book = mysqli_fetch_assoc($randomBooks)) {
           ?>
               <a href="book_details.php?id=<?php echo $book['id']; ?>" class="swiper-slide">
-                <img src="admin/uploaded_image/<?php echo $book['image'];?>" alt="" />
+                <img src="admin/uploaded_image/<?php echo $book['image']; ?>" alt="" />
               </a>
           <?php }
           } ?>
@@ -63,15 +63,16 @@ if ($userType == 'admin') {
   </section>
   <!--  home section ends -->
 
-  
-  
+
+
   <?php require_once 'footer.php'; ?>
-  
+
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
   <!-- swiper js cdn link-->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- custom js file -->
   <script src='js/scripts.js' defer></script>
   <script>

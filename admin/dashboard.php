@@ -39,7 +39,7 @@ if (!isset($admin_id)) {
     <h1 class="title">زانیاریەکان</h1>
 
     <div class="box-container">
-      
+
       <div class="box">
         <?php
         $result = mysqli_query($conn, "SELECT * FROM users WHERE user_type = 'admin'");
@@ -111,13 +111,16 @@ if (!isset($admin_id)) {
 
   </section>
 
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- custom js link-->
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>
   <script src="../js/scripts.js"></script>
-  <!-- font awesome link-->
-  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
