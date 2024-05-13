@@ -49,26 +49,28 @@ if ($userType == 'admin') {
   <?php
   if (isset($_POST['send'])) {
 
-    if($_SESSION['user_type'] != null){
+    if ($_SESSION['user_type'] != null) {
 
-    $name = $_SESSION['user_name'];
-    $email = $_SESSION['user_email'];
-    $message = mysqli_real_escape_string($conn, $_POST['message']);
+      $name = $_SESSION['user_name'];
+      $email = $_SESSION['user_email'];
+      $message = mysqli_real_escape_string($conn, $_POST['message']);
 
-    mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
+      mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
-            $message[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
-
-    } else{
+      $message[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
+    } else {
       $message[] = 'پێویستە سەرەتا خۆت تۆمار بکەیت.';
     }
-
   }
   ?>
 
   <!-- footer section -->
   <?php require_once 'footer.php'; ?>
 
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- custom js link-->
   <script>
     var userType = <?php echo json_encode($userType); ?>;

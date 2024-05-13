@@ -143,7 +143,7 @@ if ($userType == 'user' || $userType == null) {
       $update_query = mysqli_query($conn, "SELECT * FROM `books` WHERE id = '$update_id'") or die('query failed');
       if (mysqli_num_rows($update_query) > 0) {
         while ($fetch_update = mysqli_fetch_assoc($update_query)) {
-          ?>
+    ?>
           <form action="books.php" method="post" enctype="multipart/form-data">
 
             <input type="hidden" name="update_book_id" value="<?php echo $fetch_update['id']; ?>">
@@ -156,12 +156,10 @@ if ($userType == 'user' || $userType == null) {
             <img src="uploaded_image/<?php echo $fetch_update['image']; ?>" alt="">
 
             <label for="update_book_name">ناوی کتێب</label>
-            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="field" required
-              placeholder="ناوی کتێب">
+            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="field" required placeholder="ناوی کتێب">
 
             <label for="author">نووسەر</label>
-            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="field" required
-              placeholder="ناوی نووسەر">
+            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="field" required placeholder="ناوی نووسەر">
 
             <label for="category">چەشن</label>
             <?php include '../categories.php' ?>
@@ -179,7 +177,7 @@ if ($userType == 'user' || $userType == null) {
             <input type="submit" value="پاشەکەوتکردن" name="update_book" class="save-button"><br>
             <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
           </form>
-          <?php
+    <?php
         }
       }
     } else {
@@ -191,20 +189,20 @@ if ($userType == 'user' || $userType == null) {
 
   <?php
 
-// update book functionallity
-if (isset($_POST['update_book'])) {
-  
-  $update_book_id = $_POST['update_book_id'];
-  $update_book_name = $_POST['update_book_name'];
-  $update_book_author = $_POST['update_book_author'];
-  $update_book_category = $_POST['category'];
-  $update_book_description = $_POST['update_book_description'];
-  
+  // update book functionallity
+  if (isset($_POST['update_book'])) {
 
-  $update_book_image = $_FILES['update_book_image']['name'];
+    $update_book_id = $_POST['update_book_id'];
+    $update_book_name = $_POST['update_book_name'];
+    $update_book_author = $_POST['update_book_author'];
+    $update_book_category = $_POST['category'];
+    $update_book_description = $_POST['update_book_description'];
+
+
+    $update_book_image = $_FILES['update_book_image']['name'];
     $update_image_tmp_name = $_FILES['update_book_image']['tmp_name'];
     $update_old_image = $_POST['update_old_image'];
-    
+
     $update_book_file = $_FILES['update_book_file']['name'];
     $update_book_file_tmp_name = $_FILES['update_book_file']['tmp_name'];
     $update_old_file = $_POST['update_old_file'];
@@ -233,29 +231,32 @@ if (isset($_POST['update_book'])) {
   // delete book
   if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
-  
+
     // delete book image
     $delete_image_query = mysqli_query($conn, "SELECT image FROM `books` WHERE id = '$delete_id'") or die('query failed');
     $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
     unlink('uploaded_image/' . $fetch_delete_image['image']);
-  
+
     // delete book file
     $delete_file_query = mysqli_query($conn, "SELECT file FROM `books` WHERE id = '$delete_id'") or die('query failed');
     $fetch_delete_file = mysqli_fetch_assoc($delete_file_query);
     unlink('uploaded_files/' . $fetch_delete_file['file']);
-  
+
     mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
     header('refresh:0;url=./books.php');
   }
   ?>
 
+  <!-- font awesome link-->
+  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- custom js script link-->
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>
   <script src="../js/scripts.js"></script>
-  <!-- font awesome link-->
-  <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

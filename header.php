@@ -86,8 +86,9 @@
 
             <div class="search-container" id="search-container">
                 <form action="">
-                    <input type="text" placeholder="گەڕان.." name="search">
+                    <input type="text" placeholder="گەڕان.." id="search-input" name="search">
                     <i class="fa fa-search"></i>
+                    <div id="search-results"></div>
                 </form>
             </div>
 
