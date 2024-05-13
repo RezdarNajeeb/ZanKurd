@@ -46,7 +46,7 @@ if ($userType == 'user' || $userType == null) {
     if (isset($_POST['read'])) {
       $id = $_POST['id'];
       $update_state_query = mysqli_query($conn, "UPDATE contacts SET state='read' WHERE id=$id");
-      if ($delete_state_query) {
+      if ($update_state_query) {
         $message[] = 'پەیامەکە زیادکرا بۆ خوێندراوەکان.';
       } else {
         $message[] =  'ناتوانیت پەیامەکە زیاد بکەیت بۆ خوێندراوەکان.';

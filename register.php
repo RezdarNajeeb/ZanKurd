@@ -16,8 +16,8 @@ if (isset($_POST['submit'])) {
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, $_POST['password']);
-   $cpass = mysqli_real_escape_string($conn, $_POST['cpassword']);
+   $pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['password']));
+   $cpass = mysqli_real_escape_string($conn, hash('sha256', $_POST['cpassword']));
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'") or die('query failed');
 

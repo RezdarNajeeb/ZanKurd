@@ -11,4 +11,4 @@ if (isset($_COOKIE['remember-token'])) {
 }
 
 header('location:login.php');
-?>
+
