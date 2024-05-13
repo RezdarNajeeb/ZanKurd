@@ -37,7 +37,7 @@
 }
 
 /* Add Books style */
-.add-books h1, .add-authors h1, .add-message h1{
+.add-books h1, .add-authors h1, .add-message h1, .team-section h1{
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -167,6 +167,39 @@
   margin-left: 10px;
 }
 
+
+#add-admin span{
+  color: rgb(217, 48, 48);
+  font-size: 1.4rem;
+  text-align: start;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-container .show-pass-container {
+  justify-self: start;
+}
+
+.checkbox-container .show-pass-container, .checkbox-container .remember-me-container {
+  display: flex;
+  align-items: center;
+}
+
+.show-pass-container label, .remember-me-container label{
+  font-size: 1.6rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.show-pass-container input, .remember-me-container input {
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
 
 
 

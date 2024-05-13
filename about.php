@@ -25,6 +25,59 @@ if ($userType == 'admin') {
   <!-- font awesome cdn-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+.team-section {
+  text-align: center;
+  padding: 2rem;
+}
+
+.team-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.team-member {
+  max-width: 400px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: left;
+}
+
+.team-member img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.team-member h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.team-member .role {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.team-member .skills {
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .team-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
 
 <body>
 
@@ -32,6 +85,22 @@ if ($userType == 'admin') {
   <?php
   require_once 'header.php';
   ?>
+
+<section class="team-section">
+  <h1>تیمی گەشەپێدەر</h1>
+  <div class="team-container">
+    <div class="team-member">
+      <img src="admin/uploaded_image/227571.jpg" alt="Developer 1">
+      <h2>John Doe</h2>
+      <p class="role">Front-end Developer</p>
+    </div>
+    <div class="team-member">
+      <img src="admin/uploaded_image/hawkar_shakhawan.jpg" alt="Developer 2">
+      <h2>Jane Smith</h2>
+      <p class="role">Back-end Developer</p>
+    </div>
+  </div>
+</section>
 
   <section class="add-message">
     <h1>پەیوەندیکردن</h1>

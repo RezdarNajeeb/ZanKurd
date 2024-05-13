@@ -32,7 +32,7 @@ if ($userType == 'user' || $userType == null) {
 </head>
 
 <body>
-
+ 
 <?php require_once 'admin_header.php'; ?>
 
 
@@ -43,16 +43,27 @@ if ($userType == 'user' || $userType == null) {
   <section class="add-books">
     <h1>زیادکردنی بەڕێوبەر</h1>
     <div class="form-container">
-      <form action="users.php" method="POST" enctype="multipart/form-data">
+      <form action="users.php" name="auth-form" id="add-admin" method="POST" enctype="multipart/form-data">
 
-        <input type="text" name="admin_name" class="field" placeholder="ناو بنووسە" required>
+        <input type="text" name="admin_name" id="name" class="field" placeholder="ناو بنووسە" required>
+        <span id="name-error"></span>
         
-        <input type="text" name="admin_email" class="field" placeholder="ئیمەیڵ بنووسە" required>
+        <input type="text" name="admin_email" id="email" class="field" placeholder="ئیمەیڵ بنووسە" required>
+        <span id="email-error"></span>
 
-        <input type="password" name="admin_password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
+        <input type="password" name="admin_password" id="password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
+        <span id="password-error"></span>
 
-        <input type="password" name="admin_cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی"
+        <input type="password" name="admin_cpassword" id="cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی"
           required>
+          <span id="cpassword-error"></span>
+
+          <div class="checkbox-container">
+            <div class="show-pass-container">
+               <label for="show-pass">پیشاندانی وشەی نهێنی</label>
+               <input type="checkbox" name="show-pass" id="show-pass">
+            </div>
+         </div>
 
         <button type="submit" name="add_admin">زیادکردن</button>
       </form>
