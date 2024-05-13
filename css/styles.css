@@ -112,6 +112,7 @@ section {
 .promote-button,
 .demote-button,
 .read-message-button,
+.save-button,
 .reading-button {
   display: inline-block;
   color: white;
@@ -208,12 +209,12 @@ section {
   border-color: #ffb400;
 }
 
-.read-message-button, .promote-button {
+.read-message-button, .promote-button, .save-button {
   background-color: #4CAF50;
 border: 0.16rem #4CAF50;
 }
 
-.read-message-button:hover, .promote-button:hover{
+.read-message-button:hover, .promote-button:hover, .save-button:hover{
   color: #4CAF50;
   background-color: transparent;
   border-color: #4CAF50;

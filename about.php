@@ -33,8 +33,7 @@ if ($userType == 'admin') {
   require_once 'header.php';
   ?>
 
-  <!-- using the same style of adding books -->
-  <section class="add-books">
+  <section class="add-message">
     <h1>پەیوەندیکردن</h1>
     <div class="form-container">
       <form action="about.php" method="POST" enctype="multipart/form-data">

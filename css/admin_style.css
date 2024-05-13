@@ -37,7 +37,7 @@
 }
 
 /* Add Books style */
-.add-books h1 {
+.add-books h1, .add-authors h1, .add-message h1{
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -49,7 +49,7 @@
   justify-content: center;
 }
 
-.add-books form {
+.add-books form, .add-authors form, .edit-book form, .edit-author form, .add-message form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,13 +57,13 @@
   max-width: 40rem; /* Adjust as needed */
 }
 
-.add-books label {
+.add-books label, .add-authors label, .edit-book label, .edit-author label, .add-message label{
   font-size: 1.4rem;
   margin-top: 1rem;
   color: var(--text-color);
 }
 
-.add-books .field {
+.add-books .field, .add-authors .field, .edit-book .field, .edit-author .field, .add-message .field{
   width: 100%;
   padding: 0.8rem;
   font-size: 1.4rem;
@@ -73,7 +73,7 @@
   background-color: var(--light-gray);
 }
 
-.add-books button {
+.add-books button, .add-authors button, .add-message button{
   padding: 0.8rem 1.6rem;
   font-size: 1.4rem;
   background-color: var(--primary-color);
@@ -84,52 +84,31 @@
   margin-top: 1rem;
 }
 
-.add-books button:hover {
+.add-books button:hover, .add-authors button:hover, .add-message button:hover {
   background-color: var(--secondary-color);
 }
 
-.edit-book-form {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+.edit-book, .edit-author {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  position: absolute;
   overflow-y: scroll;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1200;
-  width: 100%;
+  top: 25%;
+  left: 25%;
+  z-index: 2000;
+  width: 50%;
 }
 
-.edit-book-form form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 90vw;
-  padding: 2rem;
-  text-align: center;
-  border-radius: 0.5rem;
-  background-color: white;
-}
 
-.edit-book-form form img {
+.edit-book form img, .edit-author form img{
   max-height: 25rem;
   margin-bottom: 1rem;
 }
 
-.edit-book-form form .box {
-  margin: 1rem 0;
-  padding: 0.8rem 1.2rem;
-  border: var(--border);
-  border-radius: 0.5rem;
-  background-color: var(--light-bg);
-  font-size: 1.6rem;
-  color: var(--black);
-  width: 100%;
-  max-width: 20rem;
-}
 
 #messages_heading{
   font-size: 5rem;
@@ -240,13 +219,7 @@
       cursor: pointer;
     }
 
-    /* .demote-button {
-      background-color: #deb918;
-      color: white;
-    } */
-
   
-
     /* Responsive Styles */
     @media screen and (max-width: 768px) {
       .user_container {

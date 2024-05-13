@@ -39,17 +39,14 @@ if ($userType == 'admin') {
       case 'poetries':
         $title = 'شیعر';
         break;
-      case 'چیرۆک':
-        $title = 'stories';
+      case 'stories':
+        $title = 'چیرۆک';
         break;
       case 'politics':
         $title = 'سیاسی';
         break;
       case 'sciences':
         $title = 'زانست';
-        break;
-      case 'arts':
-        $title = 'هونەر';
         break;
     }
 

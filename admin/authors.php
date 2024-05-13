@@ -33,8 +33,7 @@ if ($userType == 'user' || $userType == null) {
   ?>
 
 <!-- add author form -->
-<!-- using same style of add-books -->
-  <section class="add-books">
+  <section class="add-authors">
     <h1>زیادکردنی نووسەر</h1>
     <div class="form-container">
     <form action="authors.php" method="POST" enctype="multipart/form-data">
@@ -93,8 +92,7 @@ if ($userType == 'user' || $userType == null) {
   ?>
 
 <!-- update author form -->
-<!-- using same style of edit-book-form -->
-  <section class="edit-author-form">
+  <section class="edit-author">
     
     <?php
     if (isset($_GET['update'])) {
@@ -112,22 +110,22 @@ if ($userType == 'user' || $userType == null) {
             <img src="authors_images/<?php echo $fetch_update['image']; ?>" alt="">
 
             <label for="update_author_name">ناوی نووسەر</label>
-            <input type="text" name="update_author_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="ناوی نووسەر">
+            <input type="text" name="update_author_name" value="<?php echo $fetch_update['name']; ?>" class="field" required placeholder="ناوی نووسەر">
 
             <label for="update_author_image">وێنەی نووسەر</label>
-            <input type="file" name="update_author_image" class="box" accept="image/jpg, image/jpeg, image/png" required>
+            <input type="file" name="update_author_image" class="field" accept="image/jpg, image/jpeg, image/png" required>
 
             <label for="update_author_description">دەربارەی نووسەر</label>
-            <input type="text" name="update_author_description" value="<?php echo $fetch_update['description']; ?>" class="box" required placeholder="دەربارەی نووسەر">
+            <input type="text" name="update_author_description" value="<?php echo $fetch_update['description']; ?>" class="field" required placeholder="دەربارەی نووسەر"><br>
 
-            <input type="submit" value="پاشەکەوتکردن" name="update_author" class="btn">
-            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="option-btn">
+            <input type="submit" value="پاشەکەوتکردن" name="update_author" class="save-button"><br>
+            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
         </form>
         <?php
         }
     }
     } else {
-        echo '<script>document.querySelector(".edit-author-form").style.display = "none";</script>';
+        echo '<script>document.querySelector(".edit-author").style.display = "none";</script>';
     }
     ?>
 </section>
