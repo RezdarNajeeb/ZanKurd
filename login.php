@@ -33,7 +33,7 @@ if (isset($_COOKIE['remember-token'])) {
 
 if (isset($_POST['submit'])) {
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, $_POST['password']);
+   $pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['password']));
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 

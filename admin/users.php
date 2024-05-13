@@ -60,16 +60,14 @@ if ($userType == 'user' || $userType == null) {
   </section>
 
   <?php
+
   // add admin functionallity
-  
-
-
     if (isset($_POST['add_admin'])) {
   
       $admin_name = mysqli_real_escape_string($conn, $_POST['admin_name']);
       $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
-      $admin_pass = mysqli_real_escape_string($conn, $_POST['admin_password']);
-      $admin_cpass = mysqli_real_escape_string($conn, $_POST['admin_cpassword']);
+      $admin_pass = mysqli_real_escape_string($conn, hash('sha256', $_POST['admin_password']));
+      $admin_cpass = mysqli_real_escape_string($conn, hash('sha256', $_POST['admin_cpassword']));
   
       $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$admin_email'") or die('query failed');
   

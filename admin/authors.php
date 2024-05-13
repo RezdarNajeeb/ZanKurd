@@ -29,7 +29,7 @@ if ($userType == 'user' || $userType == null) {
 
  
 
-  include 'admin_header.php';
+  // include 'admin_header.php';
   ?>
 
 <!-- add author form -->
@@ -107,7 +107,7 @@ if ($userType == 'user' || $userType == null) {
 
             <input type="hidden" name="update_old_image" value="<?php echo $fetch_update['image']; ?>">
 
-            <img src="authors_images/<?php echo $fetch_update['image']; ?>" alt="">
+            <img src="uploaded_images/<?php echo $fetch_update['image']; ?>" alt="">
 
             <label for="update_author_name">ناوی نووسەر</label>
             <input type="text" name="update_author_name" value="<?php echo $fetch_update['name']; ?>" class="field" required placeholder="ناوی نووسەر">
@@ -152,7 +152,7 @@ if (isset($_POST['update_author'])) {
   
     if ($update_author_query) {
       move_uploaded_file($update_image_tmp_name, 'uploaded_image/' . $update_author_image);
-      unlink('authors_images/' . $update_old_image);
+      unlink('uploaded_images/' . $update_old_image);
       $message[] = 'نووسەرەکە بە سەرکەوتووی پاشەکەوتکرا.';
     }
     else {
@@ -169,7 +169,7 @@ if (isset($_POST['update_author'])) {
       // delete author image
       $delete_image_query = mysqli_query($conn, "SELECT image FROM `authors` WHERE id = '$delete_id'") or die('query failed');
       $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
-      unlink('authors_images/' . $fetch_delete_image['image']);
+      unlink('uploaded_images/' . $fetch_delete_image['image']);
       
       $delete_author_query = mysqli_query($conn, "DELETE FROM `authors` WHERE id = '$delete_id'") or die('query failed');
       if($delete_author_query){
