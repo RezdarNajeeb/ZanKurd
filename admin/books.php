@@ -51,6 +51,9 @@ if ($userType == 'user' || $userType == null) {
         <label for="book_file">فایل</label>
         <input type="file" name="file" class="field" accept="application/pdf" required>
 
+        <label for="description">دەربارەی کتێب</label>
+        <input type="text" name="description" class="field" required>
+
         <button type="submit" name="add_book">زیادکردن</button>
       </form>
     </div>
@@ -71,13 +74,15 @@ if ($userType == 'user' || $userType == null) {
     $file = $_FILES['file']['name'];
     $file_tmp_name = $_FILES['file']['tmp_name'];
 
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+
     $select_book_name = mysqli_query($conn, "SELECT name FROM `books` WHERE name = '$name'") or die('query failed');
 
     if (mysqli_num_rows($select_book_name) > 0) {
       $message[] = 'کتێبەکە پێشتر زیادکراوە.';
     } else {
-      $add_book_query = mysqli_query($conn, "INSERT INTO `books`(name, author, category, image, file)
-    VALUES('$name', '$author', '$category', '$image', '$file')") or die('query failed');
+      $add_book_query = mysqli_query($conn, "INSERT INTO `books`(name, author, category, image, file, description)
+    VALUES('$name', '$author', '$category', '$image', '$file', '$description')") or die('query failed');
 
       if ($add_book_query) {
 
@@ -131,7 +136,7 @@ if ($userType == 'user' || $userType == null) {
   ?>
 
   <!-- update book form -->
-  <section class="edit-book-form">
+  <section class="edit-book">
     <?php
     if (isset($_GET['update'])) {
       $update_id = $_GET['update'];
@@ -151,11 +156,11 @@ if ($userType == 'user' || $userType == null) {
             <img src="uploaded_image/<?php echo $fetch_update['image']; ?>" alt="">
 
             <label for="update_book_name">ناوی کتێب</label>
-            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="box" required
+            <input type="text" name="update_book_name" value="<?php echo $fetch_update['name']; ?>" class="field" required
               placeholder="ناوی کتێب">
 
             <label for="author">نووسەر</label>
-            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="box" required
+            <input type="text" name="update_book_author" value="<?php echo $fetch_update['author']; ?>" class="field" required
               placeholder="ناوی نووسەر">
 
             <label for="category">چەشن</label>
@@ -163,57 +168,43 @@ if ($userType == 'user' || $userType == null) {
 
 
             <label for="update_book_image">بەرگ</label>
-            <input type="file" name="update_book_image" class="box" accept="image/jpg, image/jpeg, image/png" required>
+            <input type="file" name="update_book_image" class="field" accept="image/jpg, image/jpeg, image/png" required>
 
             <label for="update_book_file">فایل</label>
-            <input type="file" name="update_book_file" class="box" accept="application/pdf" required>
+            <input type="file" name="update_book_file" class="field" accept="application/pdf" required>
 
+            <label for="description">دەربارەی کتێب</label>
+            <input type="text" name="update_book_description" class="field" required placeholder="دەربارەی نووسەر"><br>
 
-            <input type="submit" value="پاشەکەوتکردن" name="update_book" class="btn">
-            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="option-btn">
+            <input type="submit" value="پاشەکەوتکردن" name="update_book" class="save-button"><br>
+            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
           </form>
           <?php
         }
       }
     } else {
-      echo '<script>document.querySelector(".edit-book-form").style.display = "none";</script>';
+      echo '<script>document.querySelector(".edit-book").style.display = "none";</script>';
     }
     ?>
 
   </section>
 
   <?php
-  // delete book
-  if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
 
-    // delete book image
-    $delete_image_query = mysqli_query($conn, "SELECT image FROM `books` WHERE id = '$delete_id'") or die('query failed');
-    $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
-    unlink('uploaded_image/' . $fetch_delete_image['image']);
+// update book functionallity
+if (isset($_POST['update_book'])) {
+  
+  $update_book_id = $_POST['update_book_id'];
+  $update_book_name = $_POST['update_book_name'];
+  $update_book_author = $_POST['update_book_author'];
+  $update_book_category = $_POST['category'];
+  $update_book_description = $_POST['update_book_description'];
+  
 
-    // delete book file
-    $delete_file_query = mysqli_query($conn, "SELECT file FROM `books` WHERE id = '$delete_id'") or die('query failed');
-    $fetch_delete_file = mysqli_fetch_assoc($delete_file_query);
-    unlink('uploaded_files/' . $fetch_delete_file['file']);
-
-    mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
-    header('refresh:0;url=./books.php');
-  }
-
-
-  // update book functionallity
-  if (isset($_POST['update_book'])) {
-
-    $update_book_id = $_POST['update_book_id'];
-    $update_book_name = $_POST['update_book_name'];
-    $update_book_author = $_POST['update_book_author'];
-    $update_book_category = $_POST['category'];
-
-    $update_book_image = $_FILES['update_book_image']['name'];
+  $update_book_image = $_FILES['update_book_image']['name'];
     $update_image_tmp_name = $_FILES['update_book_image']['tmp_name'];
     $update_old_image = $_POST['update_old_image'];
-
+    
     $update_book_file = $_FILES['update_book_file']['name'];
     $update_book_file_tmp_name = $_FILES['update_book_file']['tmp_name'];
     $update_old_file = $_POST['update_old_file'];
@@ -224,7 +215,8 @@ if ($userType == 'user' || $userType == null) {
         author = '$update_book_author',
         category = '$update_book_category',
         image = '$update_book_image',
-        file = '$update_book_file'
+        file = '$update_book_file',
+        description = '$update_book_description'
         WHERE id = '$update_book_id'") or die('query failed');
 
     if ($update_book_query) {
@@ -233,6 +225,26 @@ if ($userType == 'user' || $userType == null) {
       unlink('uploaded_image/' . $update_old_image);
       unlink('uploaded_files/' . $update_old_file);
     }
+    header('refresh:0;url=./books.php');
+  }
+
+
+
+  // delete book
+  if (isset($_GET['delete'])) {
+    $delete_id = $_GET['delete'];
+  
+    // delete book image
+    $delete_image_query = mysqli_query($conn, "SELECT image FROM `books` WHERE id = '$delete_id'") or die('query failed');
+    $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
+    unlink('uploaded_image/' . $fetch_delete_image['image']);
+  
+    // delete book file
+    $delete_file_query = mysqli_query($conn, "SELECT file FROM `books` WHERE id = '$delete_id'") or die('query failed');
+    $fetch_delete_file = mysqli_fetch_assoc($delete_file_query);
+    unlink('uploaded_files/' . $fetch_delete_file['file']);
+  
+    mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
     header('refresh:0;url=./books.php');
   }
   ?>
