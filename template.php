@@ -35,7 +35,7 @@ function showAllBoxes($tableName, $query, $relatedFile)
       ?>
           <div class='box'>
             <div class="image">
-              <?php if (isset($_SESSION['user_type']) && ($_SESSION['user_type'] == 'user' || $_SESSION['user_type'] == null)) { ?>
+              <?php if (!isset($_SESSION['user_type']) || (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'user')) { ?>
                 <a href="<?php echo $relatedFile; ?>?id=<?php echo $currentBoxes['id'] ?>">
                   <img src='<?php echo "admin/uploaded_image/" . $currentBoxes['image']; ?>' alt="">
                 </a>
