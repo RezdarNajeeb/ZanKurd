@@ -216,8 +216,26 @@ function toggleFavorite(bookId) {
   });
 }
 
-// Search functionality
-$("#search-input").on("input", function () {
+// Debounce function
+function debounce(func, wait) {
+  var timeout;
+
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+    
+    var later = function() {
+      timeout = null;
+      func.apply(context, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+// Search functionality with debounce
+$("#search-input").on("input", debounce(function() {
   var searchQuery = $(this).val().trim();
 
   if (searchQuery != "" && searchQuery != null) {
@@ -237,4 +255,4 @@ $("#search-input").on("input", function () {
   } else {
     $("#search-results").html("");
   }
-});
+}, 500)); // 300ms debounce time
