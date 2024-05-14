@@ -198,7 +198,7 @@ if ($userType == 'user' || $userType == null) {
     $update_book_category = $_POST['category'];
     $update_book_description = $_POST['update_book_description'];
 
-
+    
     $update_book_image = $_FILES['update_book_image']['name'];
     $update_image_tmp_name = $_FILES['update_book_image']['tmp_name'];
     $update_old_image = $_POST['update_old_image'];
