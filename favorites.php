@@ -3,7 +3,8 @@ require_once 'config.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-  header('Location: login.php');
+  echo "<script>alert('تکایە سەرەتا بچۆ ژوورەوە')</script>";
+  header('refresh:0;url=index.php');
   exit();
 }
 

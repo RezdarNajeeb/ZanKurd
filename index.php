@@ -5,7 +5,7 @@ session_start();
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 if ($userType == 'admin') {
-  header('location: logout.php');
+  header('location: admin/dashboard.php');
 }
 ?>
 
@@ -32,6 +32,7 @@ if ($userType == 'admin') {
 <body>
   <?php
   require_once 'header.php';
+
   ?>
   <!-- home section starts -->
   <section class="home" id="home">

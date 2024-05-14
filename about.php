@@ -6,7 +6,7 @@ $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 // if the user is admin, redirect to logout page
 if ($userType == 'admin') {
-  header('location: logout.php');
+  header('location: admin/dashboard.php');
 }
 ?>
 
@@ -34,21 +34,21 @@ if ($userType == 'admin') {
   require_once 'header.php';
   ?>
 
-<section class="team-section">
-  <h1>تیمی گەشەپێدەر</h1>
-  <div class="team-container">
-    <div class="team-member">
-      <img src="admin/uploaded_image/227571.jpg" alt="Developer 1">
-      <h2>John Doe</h2>
-      <p class="role">Front-end Developer</p>
+  <section class="team-section">
+    <h1>تیمی گەشەپێدەر</h1>
+    <div class="team-container">
+      <div class="team-member">
+        <img src="assets/images/RezdarNajeebObaed.jpg" alt="Developer 1">
+        <h2>Rezdar N. Obaid</h2>
+        <p class="role">Full-Stack Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="assets/images/hawkar_shakhawan.jpg" alt="Developer 2">
+        <h2>Hawkar Shakhawan</h2>
+        <p class="role">Back-end Developer</p>
+      </div>
     </div>
-    <div class="team-member">
-      <img src="admin/uploaded_image/hawkar_shakhawan.jpg" alt="Developer 2">
-      <h2>Jane Smith</h2>
-      <p class="role">Back-end Developer</p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <section class="add-message">
     <h1>پەیوەندیکردن</h1>
@@ -66,7 +66,7 @@ if ($userType == 'admin') {
   <?php
   if (isset($_POST['send'])) {
 
-    if ($_SESSION['user_type'] != null) {
+    if ($userType != null) {
 
       $name = $_SESSION['user_name'];
       $email = $_SESSION['user_email'];
@@ -74,9 +74,9 @@ if ($userType == 'admin') {
 
       mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
-      $messages[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
+      echo "<script>alert('پەیامەکەت بە سەرکەوتوویی نێردرا.');</script>";
     } else {
-      $messages[] = 'پێویستە سەرەتا خۆت تۆمار بکەیت.';
+      echo "<script>alert('پێویستە سەرەتا خۆت تۆمار بکەیت.');</script>";
     }
   }
   ?>

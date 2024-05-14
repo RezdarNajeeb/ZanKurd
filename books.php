@@ -5,7 +5,7 @@ session_start();
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 if ($userType == 'admin') {
-  header('location: logout.php');
+  header('location: admin/dashboard.php');
 }
 ?>
 
