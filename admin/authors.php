@@ -29,7 +29,7 @@ if ($userType == 'user' || $userType == null) {
 
  
 
-  // include 'admin_header.php';
+  include 'admin_header.php';
   ?>
 
 <!-- add author form -->
@@ -169,27 +169,34 @@ if (isset($_POST['update_author'])) {
       // delete author image
       $delete_image_query = mysqli_query($conn, "SELECT image FROM `authors` WHERE id = '$delete_id'") or die('query failed');
       $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
-      unlink('uploaded_images/' . $fetch_delete_image['image']);
       
+      if ($fetch_delete_image !== null && isset($fetch_delete_image['image'])) {
+        unlink('uploaded_image/' . $fetch_delete_image['image']);
+      }
+           
       $delete_author_query = mysqli_query($conn, "DELETE FROM `authors` WHERE id = '$delete_id'") or die('query failed');
       if($delete_author_query){
         $message[] = 'نووسەرەکە سڕایەوە.';
       }
       else{
         $message[] = 'ناتوانیت نووسەرەکە بسڕیتەوە.';
-      }
-      header('refresh:0;url=./authors.php');
-    }
-    
-    
-    
-    ?>
+      } ?> <script> location.replace("authors.php"); </script>
+      <?php }?>
+      
+      
 
   <!-- custom js script link-->
   <script>
     var userType = <?php echo json_encode($userType); ?>;
   </script>
+
+
+  <!-- jquery cdn link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <!-- custom js link-->
   <script src="../js/scripts.js"></script>
+
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
 </body>

@@ -37,7 +37,7 @@
 }
 
 /* Add Books style */
-.add-books h1, .add-authors h1, .add-message h1, .team-section h1{
+.add-books h1, .add-authors h1, .add-message h1, .team-section h1, .add-admin h1{
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -49,7 +49,7 @@
   justify-content: center;
 }
 
-.add-books form, .add-authors form, .edit-book form, .edit-author form, .add-message form {
+.add-books form, .add-authors form, .edit-book form, .edit-author form, .add-message form, .add-admin form{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,13 +57,13 @@
   max-width: 40rem; /* Adjust as needed */
 }
 
-.add-books label, .add-authors label, .edit-book label, .edit-author label, .add-message label{
+.add-books label, .add-authors label, .edit-book label, .edit-author label, .add-message label, .add-admin label{
   font-size: 1.4rem;
   margin-top: 1rem;
   color: var(--text-color);
 }
 
-.add-books .field, .add-authors .field, .edit-book .field, .edit-author .field, .add-message .field{
+.add-books .field, .add-authors .field, .edit-book .field, .edit-author .field, .add-message .field, .add-admin .field{
   width: 100%;
   padding: 0.8rem;
   font-size: 1.4rem;
@@ -73,7 +73,7 @@
   background-color: var(--light-gray);
 }
 
-.add-books button, .add-authors button, .add-message button{
+.add-books button, .add-authors button, .add-message button, .add-admin button{
   padding: 0.8rem 1.6rem;
   font-size: 1.4rem;
   background-color: var(--primary-color);
@@ -84,7 +84,7 @@
   margin-top: 1rem;
 }
 
-.add-books button:hover, .add-authors button:hover, .add-message button:hover {
+.add-books button:hover, .add-authors button:hover, .add-message button:hover, .add-admin button:hover{
   background-color: var(--secondary-color);
 }
 

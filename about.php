@@ -25,59 +25,7 @@ if ($userType == 'admin') {
   <!-- font awesome cdn-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<style>
-.team-section {
-  text-align: center;
-  padding: 2rem;
-}
 
-.team-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.team-member {
-  max-width: 400px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  text-align: left;
-}
-
-.team-member img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-.team-member h2 {
-  margin-bottom: 0.5rem;
-  font-size: 2rem;
-}
-
-.team-member .role {
-  margin-bottom: 0.25rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.team-member .skills {
-  margin-bottom: 0.25rem;
-  font-size: 1.1rem;
-}
-
-@media (max-width: 768px) {
-  .team-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-</style>
 
 <body>
 
@@ -126,9 +74,9 @@ if ($userType == 'admin') {
 
       mysqli_query($conn, "INSERT INTO `contacts`(user_name, user_email, message)
     VALUES('$name', '$email', '$message')") or die('query failed');
-      $message[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
+      $messages[] = 'پەیامەکەت بە سەرکەوتوویی نێردرا.';
     } else {
-      $message[] = 'پێویستە سەرەتا خۆت تۆمار بکەیت.';
+      $messages[] = 'پێویستە سەرەتا خۆت تۆمار بکەیت.';
     }
   }
   ?>

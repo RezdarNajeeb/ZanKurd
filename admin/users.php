@@ -40,33 +40,24 @@ if ($userType == 'user' || $userType == null) {
 
   <h1 id="messages_heading">بەکارهێنەران</h1>
 
-  <?php if ($isOwner) { ?>
-    <!-- add admin form -->
-    <section class="add-books">
-      <h1>زیادکردنی بەڕێوبەر</h1>
-      <div class="form-container">
-        <form action="users.php" method="POST" enctype="multipart/form-data">
+ 
 <?php if($isOwner){?>
   <!-- add admin form -->
-  <section class="add-books">
+  <section class="add-admin">
     <h1>زیادکردنی بەڕێوبەر</h1>
     <div class="form-container">
       <form action="users.php" name="auth-form" id="add-admin" method="POST" enctype="multipart/form-data">
 
-          <input type="text" name="admin_name" class="field" placeholder="ناو بنووسە" required>
 
-          <input type="text" name="admin_email" class="field" placeholder="ئیمەیڵ بنووسە" required>
         <input type="text" name="admin_name" id="name" class="field" placeholder="ناو بنووسە" required>
         <span id="name-error"></span>
         
         <input type="text" name="admin_email" id="email" class="field" placeholder="ئیمەیڵ بنووسە" required>
         <span id="email-error"></span>
 
-          <input type="password" name="admin_password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
         <input type="password" name="admin_password" id="password" class="field" placeholder=" وشەی نهێنی بنووسە" required>
         <span id="password-error"></span>
 
-          <input type="password" name="admin_cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی" required>
         <input type="password" name="admin_cpassword" id="cpassword" class="field" placeholder="دووبارە وشەی نهێنی بنووسە بۆ دڵنیایی"
           required>
           <span id="cpassword-error"></span>
@@ -106,7 +97,7 @@ if ($userType == 'user' || $userType == null) {
         }
       }
     }
-  }
+  
   ?>
 
   <div class="user_container">
