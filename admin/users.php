@@ -8,7 +8,7 @@ $isOwner = ($adminEmail == 'owner@gmail.com');
 
 
 if ($userType == 'user' || $userType == null) {
-  header('location: ../logout.php');
+  header('location: ../index.php');
   exit;
 }
 ?>

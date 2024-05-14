@@ -11,25 +11,25 @@ if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'admin') {
 }
 
 // Check if the "Remember Token" cookie exists and log in the user if valid
-if (isset($_COOKIE['remember-token'])) {
-   $token = $_COOKIE['remember-token'];
-   $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE remember_token = '$token'") or die('query failed');
+// if (isset($_COOKIE['remember-token'])) {
+//    $token = $_COOKIE['remember-token'];
+//    $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE remember_token = '$token'") or die('query failed');
 
-   if (mysqli_num_rows($select_user) > 0) {
-      $row = mysqli_fetch_assoc($select_user);
-      $_SESSION['user_id'] = $row['id'];
-      $_SESSION['user_name'] = $row['name'];
-      $_SESSION['user_email'] = $row['email'];
-      $_SESSION['user_type'] = $row['user_type'];
-      if ($row['user_type'] == 'admin') {
-         header('location: admin/dashboard.php');
-         exit();
-      } else {
-         header('location: index.php');
-         exit();
-      }
-   }
-}
+//    if (mysqli_num_rows($select_user) > 0) {
+//       $row = mysqli_fetch_assoc($select_user);
+//       $_SESSION['user_id'] = $row['id'];
+//       $_SESSION['user_name'] = $row['name'];
+//       $_SESSION['user_email'] = $row['email'];
+//       $_SESSION['user_type'] = $row['user_type'];
+//       if ($row['user_type'] == 'admin') {
+//          header('location: admin/dashboard.php');
+//          exit();
+//       } else {
+//          header('location: index.php');
+//          exit();
+//       }
+//    }
+// }
 
 if (isset($_POST['submit'])) {
    $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -46,11 +46,11 @@ if (isset($_POST['submit'])) {
          $_SESSION['admin_email'] = $row['email'];
          $_SESSION['user_type'] = $row['user_type'];
          // Set the "Remember Me" cookie if the checkbox is checked
-         if (isset($_POST['remember-me'])) {
-            $token = bin2hex(random_bytes(16));
-            setcookie('remember-token', $token, time() + (86400 * 30));
-            mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
-         }
+         // if (isset($_POST['remember-me'])) {
+         //    $token = bin2hex(random_bytes(16));
+         //    setcookie('remember-token', $token, time() + (86400 * 30));
+         //    mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
+         // }
          header('location: admin/dashboard.php');
          exit(); // ensure that the script stops executing after redirecting
       } elseif ($row['user_type'] == 'user') {
@@ -59,11 +59,11 @@ if (isset($_POST['submit'])) {
          $_SESSION['user_id'] = $row['id'];
          $_SESSION['user_type'] = $row['user_type'];
          // Set the "Remember Me" cookie if the checkbox is checked
-         if (isset($_POST['remember-me'])) {
-            $token = bin2hex(random_bytes(16));
-            setcookie('remember-token', $token, time() + (86400 * 30), "/");
-            mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
-         }
+         // if (isset($_POST['remember-me'])) {
+         //    $token = bin2hex(random_bytes(16));
+         //    setcookie('remember-token', $token, time() + (86400 * 30), "/");
+         //    mysqli_query($conn, "UPDATE `users` SET remember_token = '$token' WHERE id = '{$row['id']}'");
+         // }
          header('location: index.php');
          exit(); // ensure that the script stops executing after redirecting
       }
@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>login</title>
+   <title>چوونەژوورەوە</title>
    <!-- custom css style link-->
    <link rel="stylesheet" href="css/styles.css">
    <link rel="stylesheet" href="css/auth_styles.css">
@@ -131,10 +131,10 @@ if (isset($_POST['submit'])) {
                <input type="checkbox" name="show-pass" id="show-pass">
             </div>
 
-            <div class="remember-me-container">
+            <!-- <div class="remember-me-container">
                <label for="remember-me">منت لەبیر بێت</label>
                <input type="checkbox" name="remember-me" id="remember-me">
-            </div>
+            </div> -->
          </div>
 
 

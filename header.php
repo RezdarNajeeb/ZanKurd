@@ -34,7 +34,7 @@
                         <a href="index.php" <?php if ($current_page === 'index.php') echo 'class="active"'; ?>>سەرەتا</a>
                     </li>
                     <li>
-                        <a href="books.php" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
+                        <a href="javascript:void(0)" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
 
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">
@@ -116,16 +116,3 @@
 
 <div class="loader-background" id="loader-background"></div>
 <i class="fa-solid fa-book fa-fade" id="loader-icon"></i>
-
-<?php 
- if (isset($messages)) {
-    foreach ($messages as $message) {
-      echo '
-        <div class="message">
-           <span>' . $message . '</span>
-           <i class="fa fa-times" onclick="this.parentElement.remove();"></i>
-        </div>
-        ';
-    }
-  }
-?>

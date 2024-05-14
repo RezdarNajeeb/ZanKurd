@@ -7,7 +7,7 @@ $admin_id = $_SESSION['admin_id'];
 $userType = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : null;
 
 if ($userType == 'user' || $userType == null) {
-  header('location: ../logout.php');
+  header('location: ../index.php');
   exit;
 }
 
