@@ -152,14 +152,14 @@ if (isset($_POST['update_author'])) {
   
     if ($update_author_query) {
       move_uploaded_file($update_image_tmp_name, 'uploaded_image/' . $update_author_image);
-      unlink('uploaded_images/' . $update_old_image);
+      unlink('uploaded_image/' . $update_old_image);
       $message[] = 'نووسەرەکە بە سەرکەوتووی پاشەکەوتکرا.';
     }
     else {
       $message[] = 'ناتوانیت نووسەرەکە پاشەکەوت بکەیت.';
     }
-    header('refresh:0;url=./authors.php');
-  }
+    ?> <script> location.replace("authors.php"); </script>
+      <?php }
 
 
   // delete author

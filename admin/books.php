@@ -87,7 +87,12 @@ if ($userType == 'user' || $userType == null) {
       if ($add_book_query) {
 
         //adding author
-        mysqli_query($conn, "INSERT INTO `authors`(name)
+        $select_author_name = mysqli_query($conn, "SELECT name FROM `authors` WHERE name = '$name'") or die('query failed');
+
+        if (mysqli_num_rows($select_author_name) > 0) {
+          $message[] = 'نووسەرەکە پێشتر زیادکراوە.';
+        } else
+          $add_author_query = mysqli_query($conn, "INSERT INTO `authors`(name)
       VALUES('$author')") or die('query failed');
 
         //lera 7isabi image size u shtm nakrdwa pewist nakat
@@ -172,7 +177,7 @@ if ($userType == 'user' || $userType == null) {
             <input type="file" name="update_book_file" class="field" accept="application/pdf" required>
 
             <label for="description">دەربارەی کتێب</label>
-            <input type="text" name="update_book_description" class="field" required placeholder="دەربارەی نووسەر"><br>
+            <input type="text" name="update_book_description" class="field" required placeholder="دەربارەی کتێب"><br>
 
             <input type="submit" value="پاشەکەوتکردن" name="update_book" class="save-button"><br>
             <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
@@ -223,7 +228,8 @@ if ($userType == 'user' || $userType == null) {
       unlink('uploaded_image/' . $update_old_image);
       unlink('uploaded_files/' . $update_old_file);
     }
-    header('refresh:0;url=./books.php');
+    ?> <script> location.replace("books.php"); </script>
+      <?php 
   }
 
 
@@ -235,17 +241,33 @@ if ($userType == 'user' || $userType == null) {
     // delete book image
     $delete_image_query = mysqli_query($conn, "SELECT image FROM `books` WHERE id = '$delete_id'") or die('query failed');
     $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
-    unlink('uploaded_image/' . $fetch_delete_image['image']);
+
+    if ($fetch_delete_image !== null && isset($fetch_delete_image['image'])) {
+      unlink('uploaded_image/' . $fetch_delete_image['image']);    }
+    
 
     // delete book file
     $delete_file_query = mysqli_query($conn, "SELECT file FROM `books` WHERE id = '$delete_id'") or die('query failed');
     $fetch_delete_file = mysqli_fetch_assoc($delete_file_query);
-    unlink('uploaded_files/' . $fetch_delete_file['file']);
 
-    mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
+    if ($fetch_delete_file !== null && isset($fetch_delete_file['file'])) {
+      unlink('uploaded_files/' . $fetch_delete_file['file']);
+    }
+
+
+    $delete_book_querey =  mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
     header('refresh:0;url=./books.php');
+
+    if($delete_book_querey){
+      $message[] = 'کتێبەکە بە سەرکەوتوویی سڕایەوە.';
+
+
+
   }
-  ?>
+  else{
+    $message[] = 'ناتوانیت کتێبەکە بسڕیتەوە.';
+  } ?> <script> location.replace("authors.php"); </script>
+  <?php }?>
 
   <!-- font awesome link-->
   <script src="https://kit.fontawesome.com/5dfe359bb3.js" crossorigin="anonymous"></script>
