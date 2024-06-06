@@ -119,7 +119,7 @@ if ($userType == 'user' || $userType == null) {
             <input type="text" name="update_author_description" value="<?php echo $fetch_update['description']; ?>" class="field" required placeholder="دەربارەی نووسەر"><br>
 
             <input type="submit" value="پاشەکەوتکردن" name="update_author" class="save-button"><br>
-            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
+            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button" onclick="(function() { document.querySelector('.edit-author').style.display = 'none'; })()">
         </form>
         <?php
         }

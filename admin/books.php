@@ -177,10 +177,10 @@ if ($userType == 'user' || $userType == null) {
             <input type="file" name="update_book_file" class="field" accept="application/pdf" required>
 
             <label for="description">دەربارەی کتێب</label>
-            <input type="text" name="update_book_description" class="field" required placeholder="دەربارەی کتێب"><br>
+            <input type="text" name="update_book_description" value="<?php echo $fetch_update['description'];?>" class="field" required placeholder="دەربارەی کتێب"><br>
 
             <input type="submit" value="پاشەکەوتکردن" name="update_book" class="save-button"><br>
-            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button">
+            <input type="reset" value="پاشگەزبوونەوە" id="close-update" class="cancel-button" onclick="(function() { document.querySelector('.edit-book').style.display = 'none'; })()">
           </form>
     <?php
         }
