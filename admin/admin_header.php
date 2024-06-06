@@ -31,7 +31,7 @@
                         <a href="dashboard.php" <?php if ($current_page === 'dashboard.php') echo 'class="active"' ?>>زانیاریەکان</a>
                     </li>
                     <li>
-                        <a href="books.php" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
+                        <a href="javascript:void(0)" id="dropdown-link" <?php if ($current_page === 'books.php') echo 'class="active"' ?>>کتێبەکان <i class="fa fa-angle-left" id="dropdown-link-icon"></i></a>
 
                         <div class="dropdown-menu-container" id="dropdown-menu-container">
                             <ul class="dropdown-menu">

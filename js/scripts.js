@@ -189,6 +189,14 @@ if (scrollToTopButton !== null) {
   });
 }
 
+$closeUpdateModal = document.getElementById("close-update");
+
+if ($closeUpdateModal !== null) {
+  $closeUpdateModal.addEventListener("click", function () {
+    document.getElementByClass("edit-book")[0].style.display = "none";
+  });
+}
+
 // Book favorite functionality
 function toggleFavorite(bookId) {
   $.ajax({
@@ -255,4 +263,6 @@ $("#search-input").on("input", debounce(function() {
   } else {
     $("#search-results").html("");
   }
-}, 500)); // 300ms debounce time
+}, 500));
+
+
